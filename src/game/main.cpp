@@ -17,7 +17,7 @@ int main()
 	// Add a simple component to it
 	weak<TestScreen> testScreen = entity->addComponent<TestScreen>();
 
-	// Start the engine loop
+	// Start the main engine loop
 	core->start();
 
 	return 0;
