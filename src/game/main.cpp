@@ -1,6 +1,7 @@
 #include <tomsengine/tomsengine.h>
 #include <memory>
 #include <GL/glew.h>
+#include <tomsengine/Core.cpp>
 
 #define shared std::shared_ptr
 #define weak std::weak_ptr
@@ -9,7 +10,7 @@
 
 int main()
 {
-/*
+	/*
 	// Initialize the engine
 	shared<Core> core = Core::initialize();
 
@@ -21,7 +22,6 @@ int main()
 
 	// Start the main engine loop
 	core->start();
-*/
-
+	*/
 	return 0;
 }
