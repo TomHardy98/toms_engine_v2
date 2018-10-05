@@ -1,7 +1,7 @@
-#include <tomsengine/tomsengine.h>
 #include <memory>
-#include <GL/glew.h>
-#include <tomsengine/Core.cpp>
+#include <iostream>
+#include <tomsengine/tomsengine.h>
+#include <tomsengine/Core.h>
 
 #define shared std::shared_ptr
 #define weak std::weak_ptr
@@ -10,11 +10,12 @@
 
 int main()
 {
-	/*
+	
 	// Initialize the engine
-	shared<Core> core = Core::initialize();
+	shared<Core> core;
+	core->Initialize();
 
-    // Create an in-game object
+    /*// Create an in-game object
 	shared<Entity> entity = core->addEntity();
 	
 	// Add a simple component to it
@@ -23,5 +24,8 @@ int main()
 	// Start the main engine loop
 	core->start();
 	*/
+
+	system("PAUSE");
+
 	return 0;
 }
