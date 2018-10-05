@@ -23,6 +23,7 @@ endif()
 
 add_library(tomsengine
   src/tomsengine/Core.cpp
+  src/tomsengine/Core.h
 )
 
 add_executable(game
