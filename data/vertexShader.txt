@@ -1,21 +1,13 @@
+uniform mat4 in_Projection;
+uniform mat4 in_Model;
 
-const GLchar *vertexShaderSource = 
-  "attribute vec3 in_Poisition;		       " \
-  "									       " \
-  "void main()						       " \
-  "{								       " \
-  "	 gl_Position = vec4(in_Position, 1.0); " \
-  "}									   ";
+attribute vec3 in_Position;
+attribute vec4 in_Color;
 
-// Create a new vertex shader, attach source code, compile it and check for errors
+varying vec4 ex_Color;
 
-GLuint vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-glShaderSource(vertexShaderId, 1, &vertexShaderSource, NULL);
-glCompileShader(vertexShaderId);
-GLint success = 0;
-glGetShaderiv(vertexShaderId, GL_COMPILE_STATUS, &success);
-
-if (!success)
+void main()
 {
-  throw std::exception();
+  gl_Position = in_Projection * in_Model * vec4(in_Position, 1.0);
+  ex_Color = in_Color;
 }
