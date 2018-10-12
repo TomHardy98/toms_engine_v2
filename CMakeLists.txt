@@ -3,6 +3,7 @@ project(TOMSENGINE)
 
 include_directories(
   src
+  contrib
 )
 
 if(MSVC)
@@ -24,6 +25,8 @@ endif()
 add_library(tomsengine
   src/tomsengine/Core.cpp
   src/tomsengine/Core.h
+  src/tomsengine/Shader.cpp
+  src/tomsengine/Shader.h
 )
 
 add_executable(game

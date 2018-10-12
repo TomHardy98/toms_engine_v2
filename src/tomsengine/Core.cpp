@@ -1,4 +1,5 @@
 #include "Core.h"
+#include "Shader.h"
 
 bool Core::Initialize()
 {
@@ -18,60 +19,13 @@ bool Core::Initialize()
 		throw std::exception();
 	}
 
+	// NEED TO FIND IN THE SHADER CLASS WHERE THE FILE IS BEING READ FROM
+	std::shared_ptr<Shader> shader;
+	shader = std::make_shared<Shader>("data/vertexShader.txt", "data/fragmentShader.txt");
+
 	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	SDL_GL_SwapWindow(window);
-
-	// CREATING A TRIANGLE (NEEDS TO BE DONE USING A COMPONENT ENTITY SYSTEM ONCE COMPLETE)
-
-	const GLfloat positions[] = {
-		0.0f, 0.5f, 0.0f,
-		-0.5f, -0.5f, 0.0f,
-		0.5f, -0.5f, 0.0f
-	};
-
-	GLuint positionsVboId = 0;
-
-	// Create a new VBO on the GPU and bind it
-	glGenBuffers(1, &positionsVboId);
-
-	if (!positionsVboId)
-	{
-		throw std::exception();
-	}
-
-	glBindBuffer(GL_ARRAY_BUFFER, positionsVboId);
-
-	// Upload a copy of the data from memory into the new VBO
-	glBufferData(GL_ARRAY_BUFFER, sizeof(positions), positions, GL_STATIC_DRAW);
-
-	// Reset the state
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	GLuint vaoId = 0;
-
-	// Create a new VAO on the GPU and bind it
-	glGenVertexArrays(1, &vaoId);
-
-	if (!vaoId)
-	{
-		throw std::exception();
-	}
-
-	glBindVertexArray(vaoId);
-
-	// Bind the position VBO, assign it to position 0 on the bound VAO and flag it to be used
-	glBindBuffer(GL_ARRAY_BUFFER, positionsVboId);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void *)0);
-
-	glEnableVertexAttribArray(0);
-
-	// Reset the state
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
-
-	// NEED TO CREATE A SHADER PROGRAM USING LAB 4 (REMEMBER TO ADD TO CMAKE)
 
 	return true;
 }
