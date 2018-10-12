@@ -22,7 +22,7 @@ bool Core::Initialize()
 	glClear(GL_COLOR_BUFFER_BIT);
 	SDL_GL_SwapWindow(window);
 
-	// Creating a triangle
+	// CREATING A TRIANGLE (NEEDS TO BE DONE USING A COMPONENT ENTITY SYSTEM ONCE COMPLETE)
 
 	const GLfloat positions[] = {
 		0.0f, 0.5f, 0.0f,
