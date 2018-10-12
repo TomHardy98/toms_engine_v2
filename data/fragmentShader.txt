@@ -1,0 +1,18 @@
+
+const GLchar *fragmentShaderSource =
+  "void main()						  " \
+  "{								  " \
+  "  gl_FragColor = vec4(0, 0, 1, 1); " \
+  "}								  " \
+
+// Create a new fragment shader, attach source code, compile it and check for errors
+
+GLuint fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+glShaderSource(fragmentShaderId, 1, &fragmentShaderSource, NULL);
+glCompileShader(fragmentShaderId);
+glGetShaderiv(fragmentShaderId, GL_COMPILE_STATUS, &success);
+
+if (!success)
+{
+  throw std::exception();
+}

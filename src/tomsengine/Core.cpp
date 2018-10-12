@@ -71,8 +71,7 @@ bool Core::Initialize()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
-	// NEED TO ADD VERTEX AND FRAGMENT SHADER
+	// NEED TO CREATE A SHADER PROGRAM USING LAB 4 (REMEMBER TO ADD TO CMAKE)
 
-	std::cout << "Hello" << std::endl;
 	return true;
 }
