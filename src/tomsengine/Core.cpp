@@ -1,6 +1,8 @@
 #include "Core.h"
 #include "Shader.h"
 
+// NEED TO FOCUS ON CREATING CES (COMPONENT ENTITY SYSTEM)
+
 bool Core::Initialize()
 {
 	int WINDOW_WIDTH = 1200;
@@ -19,9 +21,9 @@ bool Core::Initialize()
 		throw std::exception();
 	}
 
-	// NEED TO FIND IN THE SHADER CLASS WHERE THE FILE IS BEING READ FROM
-	std::shared_ptr<Shader> shader;
-	shader = std::make_shared<Shader>("data/vertexShader.txt", "data/fragmentShader.txt");
+	// NEED TO FIND IN THE SHADER CLASS WHERE THE FILE IS BEING READ FROM AS ITS NOT WORKING
+	//std::shared_ptr<Shader> shader;
+	//shader = std::make_shared<Shader>("data/vertexShader.txt", "data/fragmentShader.txt");
 
 	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
