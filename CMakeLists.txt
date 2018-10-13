@@ -27,6 +27,8 @@ add_library(tomsengine
   src/tomsengine/Core.h
   src/tomsengine/Shader.cpp
   src/tomsengine/Shader.h
+  src/tomsengine/Entity.cpp
+  src/tomsengine/Entity.h
 )
 
 add_executable(game
