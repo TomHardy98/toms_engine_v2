@@ -26,14 +26,16 @@ void safe_main()
 
 int main()
 {
-	try
+	safe_main();
+
+	/*try
 	{
 		safe_main();
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
-	}
+	}*/
 
 	system("PAUSE");
 

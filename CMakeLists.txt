@@ -10,6 +10,7 @@ if(MSVC)
   include_directories(
     contrib/msvc-windows-x86/glew/include
     contrib/msvc-windows-x86/SDL2/include
+	contrib/glm/include
   )
 
   link_directories(
