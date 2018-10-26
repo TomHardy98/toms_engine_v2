@@ -1,12 +1,12 @@
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
+#include <GL/glew.h>   // Including GLEW
+#include <SDL2/SDL.h>   // Including SDL
 
-#include <memory>
-#include <vector>
+#include <memory>   // Allows for the use of shared and weak pointers
+#include <vector>   // Allows for the use of vectors
 
 namespace tomsengine
 {
-	class Entity;
+	class Entity;   // Gives access to the Entity class
 	
 	class Core
 	{
@@ -21,12 +21,12 @@ namespace tomsengine
 
 	private:
 
-		bool running;
+		bool running;   // Boolean for if the core is running
 
-		std::vector<std::shared_ptr<Entity>> entities;
+		std::vector<std::shared_ptr<Entity>> entities;   // Shared pointer to a vector of entities
 
-		std::weak_ptr<Core> self;
+		std::weak_ptr<Core> self;   // Weak pointer to point to the core
 
-		SDL_Window *window;
+		SDL_Window *window;   // SDL Window for the window
 	};
 }

@@ -9,6 +9,8 @@
 
 using namespace tomsengine;
 
+// CONTINUE TO COMMENT REST OF CODE
+
 void safe_main()
 {
 	shared<Core> core = std::make_shared<Core>();   // Initialize the engine (SDL) and name it 'core'
@@ -22,7 +24,7 @@ void safe_main()
 
 int main()
 {
-	safe_main();
+	safe_main();   // Call safe_main function
 
 	/*try
 	{

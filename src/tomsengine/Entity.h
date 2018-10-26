@@ -1,7 +1,7 @@
 #include "Component.h"
 
-#include <memory>
-#include <vector>
+#include <memory>   // Allows for the use of shared and weak pointers
+#include <vector>   // Allows for the use of vectors
 
 #define ADDCOMPONENT \
 	std::shared_ptr<T> rtn = std::make_shared<T>(); \
