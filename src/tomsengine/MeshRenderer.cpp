@@ -7,7 +7,7 @@
 
 namespace tomsengine
 {
-	void MeshRenderer::onInitialise()
+	void MeshRenderer::onInit()
 	{
 		std::shared_ptr<VertexBuffer> positions = std::make_shared<VertexBuffer>();
 		positions->add(glm::vec3(0.0f, 0.5f, 0.0f));
@@ -26,7 +26,7 @@ namespace tomsengine
 		shader = std::make_shared<Shader>("../data/vertexShader.txt", "../data/fragmentShader.txt");
 	}
 
-	void MeshRenderer::onDisplay()
+	void MeshRenderer::onReveal()
 	{
 		shader->setUniform("in_Model", glm::mat4(1.0f));
 		shader->setUniform("in_Projection", glm::mat4(1.0f));

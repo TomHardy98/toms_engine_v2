@@ -3,13 +3,13 @@
 
 #include <GL/glew.h>
 
+#define WINDOW_WIDTH 1200
+#define WINDOW_HEIGHT 800
+
 namespace tomsengine
 {
 	Core::Core()
 	{
-		int WINDOW_WIDTH = 1200;
-		int WINDOW_HEIGHT = 800;
-
 		running = false;
 
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -17,7 +17,7 @@ namespace tomsengine
 			throw std::exception();
 		}
 
-		SDL_Window *window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_UNDEFINED,
+		window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
 		if (!SDL_GL_CreateContext(window))
@@ -29,10 +29,6 @@ namespace tomsengine
 		{
 			throw std::exception();
 		}
-
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-		SDL_GL_SwapWindow(window);
 	}
 
 	void Core::Start()
@@ -57,7 +53,7 @@ namespace tomsengine
 				(*it)->tick();
 			}
 
-			glClearColor(0.0f, 0.0f, 0.3f, 1.0f);
+			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
@@ -66,7 +62,6 @@ namespace tomsengine
 				(*it)->reveal();
 			}
 
-			// Exception Thrown Here
 			SDL_GL_SwapWindow(window);
 		}
 	}

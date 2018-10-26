@@ -10,10 +10,10 @@ namespace tomsengine
 	class MeshRenderer : public Component
 	{
 	public:
-		void onInitialise();
+		void onInit();
 
 	private:
-		void onDisplay();
+		void onReveal();
 
 		std::shared_ptr<VertexArray> shape;
 		std::shared_ptr<Shader> shader;
