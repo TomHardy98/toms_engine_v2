@@ -2,20 +2,20 @@
 #include <exception>
 #include <iostream>
 #include <tomsengine/tomsengine.h>
-#include <tomsengine/Core.h>
 
 #define shared std::shared_ptr
 #define weak std::weak_ptr
 
+using namespace tomsengine;
+
 void safe_main()
 {
 	// Initialize the engine
-	shared<Core> core;
-	core->Initialize();
+	shared<Core> core = std::make_shared<Core>();
 
-	/*// Create an in-game object
+	// Create an in-game object
 	shared<Entity> entity = core->addEntity();
-
+	/*
 	// Add a simple component to it
 	weak<TestScreen> testScreen = entity->addComponent<TestScreen>();
 

@@ -2,9 +2,32 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
-class Core
-{
-public:
+#include <memory>
+#include <vector>
 
-	bool Initialize();
-};
+namespace tomsengine
+{
+	class Entity;
+	
+	class Core
+	{
+	public:
+		Core();
+
+		void Start();
+
+		void Stop();
+
+		std::shared_ptr<Entity> addEntity();
+
+	private:
+
+		bool running;
+
+		std::vector<std::shared_ptr<Entity>> entities;
+
+		std::weak_ptr<Core> self;
+
+		SDL_Window *window;
+	};
+}
