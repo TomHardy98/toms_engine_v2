@@ -3,7 +3,6 @@
 
 namespace tomsengine
 {
-
 	Component::~Component() { }
 	void Component::onInit() { }
 	void Component::onBegin() { }
@@ -19,5 +18,4 @@ namespace tomsengine
 	{
 		return getEntity()->getCore();
 	}
-
 }

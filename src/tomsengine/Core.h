@@ -1,4 +1,3 @@
-#include <iostream>
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
@@ -12,13 +11,13 @@ namespace tomsengine
 	class Core
 	{
 	public:
-		Core();
+		Core();   // Initialisation of the core
 
-		void Start();
+		void Start();   // Start function for the core
 
-		void Stop();
+		void Stop();   // Stop function for the core
 
-		std::shared_ptr<Entity> addEntity();
+		std::shared_ptr<Entity> addEntity();   // addEntity function for the core
 
 	private:
 

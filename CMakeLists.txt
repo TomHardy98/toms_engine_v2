@@ -36,6 +36,8 @@ add_library(tomsengine
   src/tomsengine/VertexArray.h
   src/tomsengine/VertexBuffer.cpp
   src/tomsengine/VertexBuffer.h
+  src/tomsengine/MeshRenderer.cpp
+  src/tomsengine/MeshRenderer.h
 )
 
 add_executable(game

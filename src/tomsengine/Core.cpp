@@ -1,8 +1,7 @@
 #include "Core.h"
-#include "Shader.h"
 #include "Entity.h"
 
-// NEED TO FOCUS ON CREATING CES (COMPONENT ENTITY SYSTEM)
+#include <GL/glew.h>
 
 namespace tomsengine
 {
@@ -10,6 +9,13 @@ namespace tomsengine
 	{
 		int WINDOW_WIDTH = 1200;
 		int WINDOW_HEIGHT = 800;
+
+		running = false;
+
+		if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		{
+			throw std::exception();
+		}
 
 		SDL_Window *window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
@@ -24,10 +30,7 @@ namespace tomsengine
 			throw std::exception();
 		}
 
-		std::shared_ptr<Shader> shader;
-		shader = std::make_shared<Shader>("../data/vertexShader.txt", "../data/fragmentShader.txt");
-
-		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		SDL_GL_SwapWindow(window);
 	}
@@ -63,6 +66,7 @@ namespace tomsengine
 				(*it)->reveal();
 			}
 
+			// Exception Thrown Here
 			SDL_GL_SwapWindow(window);
 		}
 	}

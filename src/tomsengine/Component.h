@@ -5,7 +5,6 @@
 
 namespace tomsengine
 {
-
 	class Entity;
 	class Core;
 
@@ -27,7 +26,6 @@ namespace tomsengine
 		virtual void onTick();
 		virtual void onReveal();
 	};
-
 }
 
 #endif
