@@ -1,5 +1,7 @@
 #include <GL/glew.h>   // Including GLEW
 #include <SDL2/SDL.h>   // Including SDL
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #include <memory>   // Allows for the use of shared and weak pointers
 #include <vector>   // Allows for the use of vectors
@@ -26,6 +28,10 @@ namespace tomsengine
 		std::vector<std::shared_ptr<Entity>> entities;   // Shared pointer to a vector of entities
 
 		std::weak_ptr<Core> self;   // Weak pointer to point to the core
+
+		ALCdevice* device;
+
+		ALCcontext* context;
 
 		SDL_Window *window;   // SDL Window for the window
 	};

@@ -23,7 +23,7 @@ namespace tomsengine
 		shape->setBuffer("in_Position", positions);
 		shape->setBuffer("in_Color", colors);
 
-		shader = std::make_shared<Shader>("../data/vertexShader.txt", "../data/fragmentShader.txt");
+		shader = std::make_shared<Shader>("../data/shaders/vertexShader.txt", "../data/shaders/fragmentShader.txt");
 	}
 
 	void MeshRenderer::onReveal()

@@ -29,6 +29,28 @@ namespace tomsengine
 		{
 			throw std::exception();
 		}
+
+		device = alcOpenDevice(NULL);
+
+		if (!device)
+		{
+			throw std::exception();
+		}
+
+		context = alcCreateContext(device, NULL);
+
+		if (!context)
+		{
+			alcCloseDevice(device);
+			throw std::exception();
+		}
+
+		if (!alcMakeContextCurrent(context))
+		{
+			alcDestroyContext(context);
+			alcCloseDevice(device);
+			throw std::exception();
+		}
 	}
 
 	void Core::Start()
@@ -68,6 +90,11 @@ namespace tomsengine
 
 	void Core::Stop()
 	{
+		// Remember to close after use
+		alcMakeContextCurrent(NULL);
+		alcDestroyContext(context);
+		alcCloseDevice(device);
+
 		running = false;
 	}
 
