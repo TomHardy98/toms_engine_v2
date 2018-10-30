@@ -6,5 +6,6 @@
 #include "Component.h"
 #include "MeshRenderer.h"
 #include "Audio.h"
+#include "Texture.h"
 
 #endif

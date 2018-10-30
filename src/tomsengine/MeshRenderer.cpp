@@ -4,32 +4,30 @@
 #include "Shader.h"
 
 #include <iostream>
+#include <glm/ext.hpp>
+
+#define WINDOW_WIDTH 1200
+#define WINDOW_HEIGHT 800
 
 namespace tomsengine
 {
 	void MeshRenderer::onInit()
 	{
-		std::shared_ptr<VertexBuffer> positions = std::make_shared<VertexBuffer>();
-		positions->add(glm::vec3(0.0f, 0.5f, 0.0f));
-		positions->add(glm::vec3(-0.5f, -0.5f, 0.0f));
-		positions->add(glm::vec3(0.5f, -0.5f, 0.0f));
-
-		std::shared_ptr<VertexBuffer> colors = std::make_shared<VertexBuffer>();
-		colors->add(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
-		colors->add(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-		colors->add(glm::vec4(0.0f, 0.0f, 1.0f, 1.0f));
-
-		shape = std::make_shared<VertexArray>();
-		shape->setBuffer("in_Position", positions);
-		shape->setBuffer("in_Color", colors);
-
 		shader = std::make_shared<Shader>("../data/shaders/vertexShader.txt", "../data/shaders/fragmentShader.txt");
+		shape = std::make_shared<VertexArray>("../data/meshes/cube.obj");
+		tex = std::make_shared<Texture>("../data/textures/dog.png");
 	}
 
 	void MeshRenderer::onReveal()
 	{
-		shader->setUniform("in_Model", glm::mat4(1.0f));
-		shader->setUniform("in_Projection", glm::mat4(1.0f));
-		shader->draw(*shape);
+		shader->setUniform("in_Model", glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -10.0f)));
+		
+		shader->setUniform("in_Projection", glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.1f, 100.0f));
+		
+		shader->setUniform("in_View", glm::mat4(1.0f));	
+		
+		shader->setUniform("in_Texture", tex);
+
+		shader->draw(shape);
 	}
 }

@@ -46,6 +46,10 @@ add_library(tomsengine
   src/tomsengine/MeshRenderer.h
   src/tomsengine/Audio.cpp
   src/tomsengine/Audio.h
+  src/tomsengine/Texture.cpp
+  src/tomsengine/Texture.h
+  contrib/stb_image/stb_image.cpp
+  contrib/stb_image/stb_image.h
 )
 
 add_executable(game

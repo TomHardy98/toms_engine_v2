@@ -1,8 +1,10 @@
 #include "Shader.h"
 #include "VertexArray.h"
+#include "Texture.h"
 
 #include <glm/ext.hpp>
 
+#include <vector>
 #include <fstream>
 #include <iostream>
 
@@ -69,6 +71,8 @@ namespace tomsengine
 		glAttachShader(id, fragmentShaderId);
 		glBindAttribLocation(id, 0, "in_Position");
 		glBindAttribLocation(id, 1, "in_Color");
+		glBindAttribLocation(id, 2, "in_TexCoord");
+		glBindAttribLocation(id, 3, "in_Normal");
 
 		if (glGetError() != GL_NO_ERROR)
 		{
@@ -89,12 +93,32 @@ namespace tomsengine
 		glDeleteShader(fragmentShaderId);
 	}
 
-	void Shader::draw(VertexArray& vertexArray)
+	void Shader::draw(std::shared_ptr<VertexArray> vertexArray)
 	{
 		glUseProgram(id);
-		glBindVertexArray(vertexArray.getId());
+		glBindVertexArray(vertexArray->getId());
 
-		glDrawArrays(GL_TRIANGLES, 0, vertexArray.getVertexCount());
+		for (size_t i = 0; i < samplers.size(); ++i)
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+
+			if (samplers.at(i).texture)
+			{
+				glBindTexture(GL_TEXTURE_2D, samplers.at(i).texture->getId());
+			}
+			else
+			{
+				glBindTexture(GL_TEXTURE_2D, 0);
+			}
+		}
+
+		glDrawArrays(GL_TRIANGLES, 0, vertexArray->getVertexCount());
+
+		for (size_t i = 0; i < samplers.size(); i++)
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
 
 		glBindVertexArray(0);
 		glUseProgram(0);
@@ -142,9 +166,40 @@ namespace tomsengine
 		glUseProgram(0);
 	}
 
+	void Shader::setUniform(std::string uniform, std::shared_ptr<Texture> texture)
+	{
+		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+		if (uniformId == -1)
+		{
+			throw std::exception();
+		}
+
+		for (size_t i = 0; i < samplers.size(); i++)
+		{
+			if (samplers.at(i).id == uniformId)
+			{
+				samplers.at(i).texture = texture;
+
+				glUseProgram(id);
+				glUniform1i(uniformId, i);
+				glUseProgram(0);
+				return;
+			}
+		}
+
+		Sampler s;
+		s.id = uniformId;
+		s.texture = texture;
+		samplers.push_back(s);
+
+		glUseProgram(id);
+		glUniform1i(uniformId, samplers.size() - 1);
+		glUseProgram(0);
+	}
+
 	GLuint Shader::getId()
 	{
 		return id;
 	}
-
 }

@@ -14,6 +14,7 @@ namespace tomsengine
 
 	public:
 		VertexBuffer();
+		void add(glm::vec2 value);
 		void add(glm::vec3 value);
 		void add(glm::vec4 value);
 		int getComponents();
