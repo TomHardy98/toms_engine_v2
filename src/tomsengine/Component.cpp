@@ -3,19 +3,19 @@
 
 namespace tomsengine
 {
-	Component::~Component() { }
-	void Component::onInit() { }
-	void Component::onBegin() { }
-	void Component::onTick() { }
-	void Component::onReveal() { }
+	Component::~Component() { }   // Declaring Component destructor
+	void Component::onInit() { }   // Declaring Component onInit function
+	void Component::onBegin() { }   // Declaring Component onBegin function
+	void Component::onTick() { }   // Declaring Component onTick function
+	void Component::onReveal() { }   // Declaring Component onReveal function
 
-	std::shared_ptr<Entity> Component::getEntity()
+	std::shared_ptr<Entity> Component::getEntity()   // getEntity function declaration
 	{
-		return entity.lock();
+		return entity.lock();   // Return a shared pointer of Entity
 	}
 
-	std::shared_ptr<Core> Component::getCore()
+	std::shared_ptr<Core> Component::getCore()   // getCore function declaration
 	{
-		return getEntity()->getCore();
+		return getEntity()->getCore();   // Return a shared pointer of Core
 	}
 }

@@ -5,8 +5,8 @@
 
 namespace tomsengine
 {
-	class Entity;   // Allows access to the Entity class
-	class Core;   // Allows access to the Core class
+	class Entity;   // Gives access to the Entity class
+	class Core;   // Gives access to the Core class
 
 	class Component
 	{

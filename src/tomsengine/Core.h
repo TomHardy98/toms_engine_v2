@@ -29,7 +29,7 @@ namespace tomsengine
 
 		std::weak_ptr<Core> self;   // Weak pointer to point to the core
 
-		ALCdevice* device;
+		ALCdevice* device;   // Represents a hardware device
 
 		ALCcontext* context;
 

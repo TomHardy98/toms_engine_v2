@@ -1,24 +1,24 @@
-#include <GL/glew.h>
+#include <GL/glew.h>   // Allows for the use of GLM
 #include <glm/glm.hpp>
 
-#include <vector>
+#include <vector>   // Allows for the use of vectors
 
 namespace tomsengine
 {
 	class VertexBuffer
 	{
-		GLuint id;
-		int components;
-		std::vector<GLfloat> data;
-		bool dirty;
+		GLuint id;   // Declaring GLuint variable called id
+		int components;   // Declaring int variable called components
+		std::vector<GLfloat> data;   // Declaring vector of GLfloat called data
+		bool dirty;   // Declaring bool called dirty
 
 	public:
-		VertexBuffer();
-		void add(glm::vec2 value);
-		void add(glm::vec3 value);
-		void add(glm::vec4 value);
-		int getComponents();
-		int getDataSize();
-		GLuint getId();
+		VertexBuffer();   // Constructor of VertexBuffer
+		void add(glm::vec2 value);   // Declaring add function taking a vec2
+		void add(glm::vec3 value);   // Declaring add function taking a vec3
+		void add(glm::vec4 value);   // Declaring add function taking a vec4
+		int getComponents();   // Declaring getComponents function
+		int getDataSize();   // Declaring getDataSize function
+		GLuint getId();   // Declaring getId function
 	};
 }
