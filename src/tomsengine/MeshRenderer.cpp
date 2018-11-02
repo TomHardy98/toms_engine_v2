@@ -2,6 +2,8 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "Shader.h"
+#include "Transform.h"
+#include "Entity.h"
 
 #include <iostream>   // Allows for the use of output to the command console
 #include <glm/ext.hpp>   // Allows for the use of GLM
@@ -20,7 +22,7 @@ namespace tomsengine
 
 	void MeshRenderer::onReveal()   // MeshRenderer onReveal function
 	{
-		shader->setUniform("in_Model", glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -10.0f)));   // Set the model matrix
+		shader->setUniform("in_Model", getEntity()->getComponent<Transform>()->getModelMatrix());   // Set the model matrix
 		
 		shader->setUniform("in_Projection", glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.1f, 100.0f));   // Set the projection matrix
 		

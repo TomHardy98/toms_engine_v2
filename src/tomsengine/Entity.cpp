@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Transform.h"
 
 namespace tomsengine
 {
@@ -29,5 +30,10 @@ namespace tomsengine
 		{
 			(*it)->onReveal();   // Call onReveal function at each component
 		}
+	}
+
+	void Entity::setTransform()   // Declaring entity set transform function
+	{
+		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   // Add a transform component
 	}
 }

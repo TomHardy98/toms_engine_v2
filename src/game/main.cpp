@@ -13,13 +13,15 @@ void safe_main()
 {
 	shared<Core> core = std::make_shared<Core>();   // Initialize the engine (SDL) and name it 'core'
 
-	shared<Entity> entity = core->addEntity();   // Create an in-game object (entity) and add it to the core
+	shared<Entity> entity = core->addEntity();   // Create an in-game object (entity with a transform component) and add it to the core
 
 	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();   // Add a mesh renderer to the 'entity' inside 'core'
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
 	au->play();   // Play the audio clip
+
+	entity->getComponent<Transform>()->setPosition(3.0f, 0.0f, -10.0f);   // Move entity component using transform component 3 to the right
 
 	core->Start();   // Start the main engine loop
 }
