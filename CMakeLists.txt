@@ -50,6 +50,8 @@ add_library(tomsengine
   src/tomsengine/Texture.h
   contrib/stb_image/stb_image.cpp
   contrib/stb_image/stb_image.h
+  src/tomsengine/Transform.cpp
+  src/tomsengine/Transform.h
 )
 
 add_executable(game

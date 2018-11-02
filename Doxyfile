@@ -1,0 +1,13 @@
+# Doxyfile 1.8.14
+
+PROJECT_NAME           = "Toms Engine V2"
+
+EXTRACT_ALL            = YES
+
+INPUT                  = src/tomsengine
+
+RECURSIVE              = YES
+
+CLASS_DIAGRAMS         = YES
+
+PROJECT_LOGO           = engine.jpg
