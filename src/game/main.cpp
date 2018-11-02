@@ -21,7 +21,7 @@ void safe_main()
 
 	au->play();   // Play the audio clip
 
-	entity->getComponent<Transform>()->setPosition(3.0f, 0.0f, -10.0f);   // Move entity component using transform component 3 to the right
+	entity->getComponent<Transform>()->setPosition(3.0f, -2.5f, -10.0f);   // Move entity component using transform component
 
 	core->Start();   // Start the main engine loop
 }

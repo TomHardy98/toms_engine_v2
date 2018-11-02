@@ -76,8 +76,10 @@ namespace tomsengine
 				(*it)->tick();   // Call the tick function for each entity
 			}
 
+			glEnable(GL_DEPTH_TEST);   // Enable depth test so it knows what to draw first and last
+
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);   // Set screen colour
-			glClear(GL_COLOR_BUFFER_BIT);   // Clear colour buffer
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Clear colour buffer and depth buffer
 
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities
