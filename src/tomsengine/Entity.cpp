@@ -32,8 +32,10 @@ namespace tomsengine
 		}
 	}
 
-	void Entity::setTransform()   // Declaring entity set transform function
+	void Entity::setDefaultTransformPositions()   // Declaring entity set transform function
 	{
-		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   // Add a transform component
+		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   // Add a transform component and set default position
+		getComponent<Transform>()->setRotation(0.0f, 0.0f, 0.0f);   // Access the transform component and set default rotation
+		getComponent<Transform>()->setScale(0.0f, 0.0f, 0.0f);   // Access the transform component and set default scale
 	}
 }

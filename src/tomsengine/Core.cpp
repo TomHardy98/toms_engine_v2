@@ -104,7 +104,7 @@ namespace tomsengine
 	{
 		std::shared_ptr<Entity> rtn = std::make_shared<Entity>();   // rtn is a shared pointer of Entity
 		entities.push_back(rtn);   // Push back rtn on entities vector
-		rtn->setTransform();   // Give every entity a transform component
+		rtn->setDefaultTransformPositions();   // Give every entity a transform component
 		rtn->self = rtn;   // Set return back
 		rtn->core = self;   // Set core back
 

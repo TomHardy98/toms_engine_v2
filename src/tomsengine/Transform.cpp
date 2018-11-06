@@ -25,7 +25,7 @@ namespace tomsengine
 		position += direction;
 	}
 
-	void Transform::Rotate(float x, float y, float z)
+	void Transform::Rotate(float x2, float y2, float z2)
 	{
 		// NEED ROTATION FUNCTION
 	}
@@ -35,7 +35,7 @@ namespace tomsengine
 		rotation += direction;
 	}
 
-	void Transform::Scale(float x, float y, float z)
+	void Transform::Scale(float x3, float y3, float z3)
 	{
 		// NEED SCALE FUNCTION
 	}
