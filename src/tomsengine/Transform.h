@@ -2,6 +2,7 @@
 
 #include <GL/glew.h>   // Allows for the use of GLM
 #define GLM_FORCE_CTOR_INIT   // Forces vectors to be empty
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <memory>   // Allows for the use of pointers
 
@@ -36,5 +37,11 @@ namespace tomsengine
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;
+		glm::mat4 modelMatrix;
+		glm::mat4 translationMatrix;
+		glm::mat4 rotationMatrix;
+		glm::mat4 rotationMatrix2;
+		glm::mat4 rotationMatrix3;
+		glm::mat4 scaleMatrix;
 	};
 }

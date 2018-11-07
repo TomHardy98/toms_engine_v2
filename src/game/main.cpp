@@ -21,7 +21,9 @@ void safe_main()
 
 	au->play();   // Play the audio clip
 
-	entity->getComponent<Transform>()->Translate(3.0f, -2.5f, -10.0f);   // Move entity component using transform component
+	entity->getComponent<Transform>()->Translate(0.0f, -2.5f, 0.0f);   // Move entity component using transform component
+	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
+	entity->getComponent<Transform>()->Scale(1.0f, 1.0f, 1.0f);   // Scale entity component using transform component
 
 	core->Start();   // Start the main engine loop
 }
