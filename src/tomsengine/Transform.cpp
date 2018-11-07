@@ -20,29 +20,14 @@ namespace tomsengine
 		position += glm::vec3(x, y, z);
 	}
 
-	void Transform::Translate(glm::vec3 &direction)
-	{
-		position += direction;
-	}
-
 	void Transform::Rotate(float x2, float y2, float z2)
 	{
 		// NEED ROTATION FUNCTION
 	}
 
-	void Transform::Rotate(glm::vec3 &direction)
-	{
-		rotation += direction;
-	}
-
 	void Transform::Scale(float x3, float y3, float z3)
 	{
 		// NEED SCALE FUNCTION
-	}
-
-	void Transform::Scale(glm::vec3 &scaleVal)
-	{
-		scale += scaleVal;
 	}
 
 	glm::mat4 Transform::getModelMatrix()

@@ -15,13 +15,10 @@ namespace tomsengine
 		~Transform();
 
 		void Translate(float x, float y, float z);
-		void Translate(glm::vec3 &direction);
 
 		void Rotate(float x2, float y2, float z2);
-		void Rotate(glm::vec3 &direction);
 
 		void Scale(float x3, float y3, float z3);
-		void Scale(glm::vec3 &scaleVal);
 
 		glm::mat4 getModelMatrix();
 
