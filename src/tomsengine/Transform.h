@@ -26,13 +26,13 @@ namespace tomsengine
 		glm::mat4 getModelMatrix();
 
 		glm::vec3 getPosition() { return position; }
-		void setPosition(float x, float y, float z) { position.x = x; position.y = y; position.z = z; }
+		void setPosition(float x, float y, float z) { position.x = x; position.y = y; position.z = z; }   // Used for setting default position of Entity
 
 		glm::vec3 getRotation() { return rotation; }
-		void setRotation(float x2, float y2, float z2) { rotation.x = x2; rotation.y = y2; rotation.z = z2; }
+		void setRotation(float x2, float y2, float z2) { rotation.x = x2; rotation.y = y2; rotation.z = z2; }   // Used for setting default rotation of Entity
 
 		glm::vec3 getScale() { return scale; }
-		void setScale(float x3, float y3, float z3) { scale.x = x3; scale.y = y3; scale.z = z3; }
+		void setScale(float x3, float y3, float z3) { scale.x = x3; scale.y = y3; scale.z = z3; }   // Used for setting default scale of Entity
 
 	private:
 
