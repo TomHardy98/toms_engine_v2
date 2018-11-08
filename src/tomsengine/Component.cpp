@@ -1,13 +1,33 @@
 #include "Component.h"
 #include "Entity.h"
+#include "Transform.h"
 
 namespace tomsengine
 {
-	Component::~Component() { }   // Declaring Component destructor
-	void Component::onInit() { }   // Declaring Component onInit function
-	void Component::onBegin() { }   // Declaring Component onBegin function
-	void Component::onTick() { }   // Declaring Component onTick function
-	void Component::onReveal() { }   // Declaring Component onReveal function
+	Component::~Component()   // Declaring Component destructor
+	{
+
+	}
+
+	void Component::onInit()   // Declaring Component onInit function
+	{ 
+
+	}
+
+	void Component::onBegin()   // Declaring Component onBegin function
+	{ 
+		
+	}
+	
+	void Component::onTick()   // onTick function or update function
+	{
+		
+	}
+
+	void Component::onReveal()   // Declaring Component onReveal function
+	{ 
+
+	}
 
 	std::shared_ptr<Entity> Component::getEntity()   // getEntity function declaration
 	{

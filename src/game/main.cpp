@@ -17,13 +17,20 @@ void safe_main()
 
 	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();   // Add a mesh renderer to the 'entity' inside 'core'
 
+	shared<Entity> entity2 = core->addEntity();   // Create an in-game object (entity with a transform component) and add it to the core
+
+	shared<MeshRenderer> mr2 = entity2->addComponent<MeshRenderer>();   // Add a mesh renderer to the 'entity' inside 'core'
+
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
 	au->play();   // Play the audio clip
 
-	entity->getComponent<Transform>()->Translate(0.0f, -2.5f, 0.0f);   // Move entity component using transform component
+	entity->getComponent<Transform>()->Translate(-3.0f, -2.5f, 0.0f);   // Move entity component using transform component
 	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	entity->getComponent<Transform>()->Scale(1.0f, 1.0f, 1.0f);   // Scale entity component using transform component
+	//entity->getComponent<Transform>()->Scale(0.5f, 0.5f, 0.5f);   // Scale entity component using transform component
+
+	entity2->getComponent<Transform>()->Translate(3.0f, -2.5f, 0.0f);
+	entity2->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);
 
 	core->Start();   // Start the main engine loop
 }
