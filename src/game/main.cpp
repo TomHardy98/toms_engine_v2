@@ -27,7 +27,7 @@ void safe_main()
 
 	entity->getComponent<Transform>()->Translate(-3.0f, -2.5f, 0.0f);   // Move entity component using transform component
 	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	//entity->getComponent<Transform>()->Scale(0.5f, 0.5f, 0.5f);   // Scale entity component using transform component
+	entity->getComponent<Transform>()->Scale(0.5f, 0.5f, 0.5f);   // Scale entity component using transform component
 
 	entity2->getComponent<Transform>()->Translate(3.0f, -2.5f, 0.0f);
 	entity2->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);
