@@ -40,4 +40,9 @@ namespace tomsengine
 
 		return modelMatrix;
 	}
+
+	glm::mat4 Transform::getViewMatrix()
+	{
+		return glm::inverse(getModelMatrix());
+	}
 }

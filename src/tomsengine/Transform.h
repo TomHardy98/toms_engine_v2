@@ -23,6 +23,8 @@ namespace tomsengine
 
 		glm::mat4 getModelMatrix();
 
+		glm::mat4 getViewMatrix();
+
 		glm::vec3 getPosition() { return position; }
 		void setPosition(float x, float y, float z) { position.x = x; position.y = y; position.z = z; }   // Used for setting default position of Entity
 

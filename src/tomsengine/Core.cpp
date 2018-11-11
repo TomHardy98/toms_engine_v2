@@ -3,6 +3,7 @@
 #include "Transform.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
+#include <iostream>
 
 #define WINDOW_WIDTH 1200   // Defining window width
 #define WINDOW_HEIGHT 800   // Defining window height
@@ -54,9 +55,14 @@ namespace tomsengine
 		}
 	}
 
-	void Core::Start()   // Core start function
+	void Core::Start(std::shared_ptr<Entity> cam)   // Core start function
 	{
 		running = true;   // Set running to true
+		bool mouseFirst = true;
+		bool mouseMotion = false;
+		float mouseRelX = 0.0f;
+		float mouseRelY = 0.0f;
+		float mouseSense = 0.004f;
 
 		while (running)   // While running is true
 		{
@@ -66,7 +72,30 @@ namespace tomsengine
 			{
 				if (event.type == SDL_QUIT)   // If the event is SDL_QUIT
 				{
-					running = false;   // Set running to false
+					running = false;
+				}
+				
+				if (event.type == SDL_MOUSEMOTION) 
+				{
+					mouseMotion = true;
+
+					if (!mouseFirst) 
+					{
+						mouseRelX = event.motion.xrel;
+						mouseRelY = event.motion.yrel;
+					}
+					else 
+					{
+						mouseFirst = false;
+						mouseRelX = 0.0f;
+						mouseRelY = 0.0f;
+					}
+				}
+
+				if (mouseMotion)
+				{
+					mouseMotion = false;
+					cam->getComponent<Transform>()->Rotate((mouseRelX * mouseSense), (mouseRelY * mouseSense), 0.0f);
 				}
 			}
 

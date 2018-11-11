@@ -15,7 +15,7 @@ namespace tomsengine
 	public:
 		Core();   // Initialisation of the core
 
-		void Start();   // Start function for the core
+		void Start(std::shared_ptr<Entity> cam);   // Start function for the core
 
 		void Stop();   // Stop function for the core
 

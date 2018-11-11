@@ -26,7 +26,7 @@ namespace tomsengine
 		
 		shader->setUniform("in_Projection", glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.1f, 100.0f));   // Set the projection matrix
 		
-		shader->setUniform("in_View", glm::mat4(1.0f));	  // Set the view matrix
+		shader->setUniform("in_View", camera->getComponent<Transform>()->getViewMatrix());	  // Set the view matrix
 		
 		shader->setUniform("in_Texture", tex);   // Set the texture
 

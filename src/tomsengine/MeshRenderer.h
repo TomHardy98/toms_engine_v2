@@ -12,6 +12,7 @@ namespace tomsengine
 	{
 	public:
 		void onInit();   // Defining onInit function
+		std::shared_ptr<Entity> camera;
 
 	private:
 		void onReveal();   // Defining onReveal function
