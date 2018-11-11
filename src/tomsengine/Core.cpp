@@ -60,6 +60,10 @@ namespace tomsengine
 		running = true;   // Set running to true
 		bool mouseFirst = true;
 		bool mouseMotion = false;
+		bool moveLeft = false;
+		bool moveRight = false;
+		bool moveForward = false;
+		bool moveBack = false;
 		float mouseRelX = 0.0f;
 		float mouseRelY = 0.0f;
 		float mouseSense = 0.004f;
@@ -74,7 +78,70 @@ namespace tomsengine
 				{
 					running = false;
 				}
+
+				if (event.type == SDL_KEYDOWN)
+				{
+					switch (event.key.keysym.sym)
+					{
+					case SDLK_w:
+						moveForward = true;
+						break;
+					case SDLK_a:
+						moveLeft = true;
+						break;
+					case SDLK_s:
+						moveBack = true;
+						break;
+					case SDLK_d:
+						moveRight = true;
+						break;
+					}
+					break;
+				}
+
+				if (event.type == SDL_KEYUP)
+				{
+					switch (event.key.keysym.sym)
+					{
+					case SDLK_w:
+						moveForward = false;
+						break;
+					case SDLK_a:
+						moveLeft = false;
+						break;
+					case SDLK_s:
+						moveBack = false;
+						break;
+					case SDLK_d:
+						moveRight = false;
+						break;
+					}
+					break;
+				}
+
+				if (moveForward & !moveBack & !moveLeft & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, -1.0f);
+				}
+
+				if (moveBack & !moveForward & !moveLeft & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, 1.0f);
+				}
+
+				if (moveLeft & !moveBack & !moveForward & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(-1.0f, 0.0f, 0.0f);
+				}
+
+				if (moveRight & !moveBack & !moveLeft & !moveForward)
+				{
+					cam->getComponent<Transform>()->Translate(1.0f, 0.0f, 0.0f);
+				}
 				
+				// COMMENTED OUT MOUSE MOVEMENT TO ROTATE CAMERA
+
+				/*
 				if (event.type == SDL_MOUSEMOTION) 
 				{
 					mouseMotion = true;
@@ -97,6 +164,7 @@ namespace tomsengine
 					mouseMotion = false;
 					cam->getComponent<Transform>()->Rotate((mouseRelX * mouseSense), (mouseRelY * mouseSense), 0.0f);
 				}
+				*/
 			}
 
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
