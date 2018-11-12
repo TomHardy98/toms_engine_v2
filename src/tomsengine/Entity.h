@@ -33,7 +33,8 @@ namespace tomsengine
 				}
 			}
 
-			throw std::exception();
+			//throw std::exception();
+			return false;
 		}
 
 		template <typename T>   // Creating a template for adding a component with no variables

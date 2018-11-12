@@ -8,5 +8,6 @@
 #include "Audio.h"
 #include "Texture.h"
 #include "Transform.h"
+#include "BoxCollider.h"
 
 #endif

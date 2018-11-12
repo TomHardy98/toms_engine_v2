@@ -52,6 +52,8 @@ add_library(tomsengine
   contrib/stb_image/stb_image.h
   src/tomsengine/Transform.cpp
   src/tomsengine/Transform.h
+  src/tomsengine/BoxCollider.cpp
+  src/tomsengine/BoxCollider.h
 )
 
 add_executable(game

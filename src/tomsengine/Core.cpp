@@ -1,6 +1,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Transform.h"
+#include "BoxCollider.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
@@ -171,6 +172,19 @@ namespace tomsengine
 				it != entities.end(); it++)   // Loop through all the entities
 			{
 				(*it)->tick();   // Call the tick function for each entity
+
+				for (std::vector<std::shared_ptr<Entity>>::iterator it2 = entities.begin();
+					it2 != entities.end(); it2++)   // Loop through all the entities
+				{
+					if (*it == *it2 || (*it)->getComponent<BoxCollider>() == false || (*it2)->getComponent<BoxCollider>() == false)   // Will only check collisions if more than one entity has a box collider in scene
+					{
+						continue;
+					}
+					else
+					{
+						(*it)->getComponent<BoxCollider>()->checkCollisions(*it2);   // Check collisions function
+					}
+				}
 			}
 
 			glEnable(GL_DEPTH_TEST);   // Enable depth test so it knows what to draw first and last
