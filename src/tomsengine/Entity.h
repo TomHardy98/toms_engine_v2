@@ -33,7 +33,22 @@ namespace tomsengine
 				}
 			}
 
-			//throw std::exception();
+			throw std::exception();
+		}
+
+		template <typename T>   // Creating a template for checking if a component exists
+		bool hasComponent()
+		{
+			for (size_t i = 0; i < components.size(); i++)
+			{
+				std::shared_ptr<T> tst = std::dynamic_pointer_cast<T>(components.at(i));
+
+				if (tst)
+				{
+					return true;
+				}
+			}
+
 			return false;
 		}
 

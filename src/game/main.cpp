@@ -18,14 +18,13 @@ void safe_main()
 
 	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();   // Add a mesh renderer to the 'entity' inside 'core'
 
-	mr->camera = cam;
+	mr->camera = cam;   // Active camera needs to be used otherwise it wont work with multiple entities
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
 	au->play();   // Play the audio clip
 
 	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
-	//cam->addComponent<BoxCollider>();
 
 	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
 	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component

@@ -11,8 +11,22 @@ namespace tomsengine
 
 	bool BoxCollider::checkCollisions(std::shared_ptr<Entity> otherEntity)
 	{
-		std::cout << "Checking collisiosn between two objects with a box collider" << std::endl;
+		if (getEntity()->getComponent<Transform>()->getPosition().x <= (otherEntity->getComponent<Transform>()->getPosition().x + otherEntity->getComponent<Transform>()->getScale().x / 1)
+			&& getEntity()->getComponent<Transform>()->getPosition().x >= (otherEntity->getComponent<Transform>()->getPosition().x - otherEntity->getComponent<Transform>()->getScale().x / 1))
+		{
+			if (getEntity()->getComponent<Transform>()->getPosition().y <= (otherEntity->getComponent<Transform>()->getPosition().y + otherEntity->getComponent<Transform>()->getScale().y / 1)
+				&& getEntity()->getComponent<Transform>()->getPosition().y >= (otherEntity->getComponent<Transform>()->getPosition().y - otherEntity->getComponent<Transform>()->getScale().y / 1))
+			{
+				if (getEntity()->getComponent<Transform>()->getPosition().z <= (otherEntity->getComponent<Transform>()->getPosition().z + otherEntity->getComponent<Transform>()->getScale().z / 1)
+					&& getEntity()->getComponent<Transform>()->getPosition().z >= (otherEntity->getComponent<Transform>()->getPosition().z - otherEntity->getComponent<Transform>()->getScale().z / 1))
+				{
+					std::cout << "Collision has occured!" << std::endl;
+					return true;
+				}
+			}
+		}
 
+		std::cout << "No collision has occured" << std::endl;
 		return false;
 	}
 }

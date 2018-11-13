@@ -69,6 +69,8 @@ namespace tomsengine
 		float mouseRelY = 0.0f;
 		float mouseSense = 0.004f;
 
+		unsigned int lastTime = SDL_GetTicks();
+
 		while (running)   // While running is true
 		{
 			SDL_Event event = { 0 };   // Create an SDL event array and initialise all to 0
@@ -120,24 +122,49 @@ namespace tomsengine
 					break;
 				}
 
+				// Setting up Delta Time
+				unsigned int presentTime = SDL_GetTicks();
+				float deltaTs = (float)(presentTime - lastTime) / 1000.0f;
+				lastTime - presentTime;
+
 				if (moveForward & !moveBack & !moveLeft & !moveRight)
 				{
-					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, -1.0f);
+					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, -0.1f * deltaTs);
+				}
+
+				if (moveForward && moveLeft & !moveBack & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(-0.1f, 0.0f, -0.1f * deltaTs);
+				}
+
+				if (moveForward && moveRight & !moveBack & !moveLeft)
+				{
+					cam->getComponent<Transform>()->Translate(0.1f, 0.0f, -0.1f * deltaTs);
 				}
 
 				if (moveBack & !moveForward & !moveLeft & !moveRight)
 				{
-					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, 1.0f);
+					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.1f * deltaTs);
+				}
+
+				if (moveBack && moveLeft & !moveForward & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(-0.1f, 0.0f, 0.1f * deltaTs);
+				}
+
+				if (moveBack && moveRight & !moveForward & !moveLeft)
+				{
+					cam->getComponent<Transform>()->Translate(0.1f, 0.0f, 0.1f * deltaTs);
 				}
 
 				if (moveLeft & !moveBack & !moveForward & !moveRight)
 				{
-					cam->getComponent<Transform>()->Translate(-1.0f, 0.0f, 0.0f);
+					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, 0.0f);
 				}
 
 				if (moveRight & !moveBack & !moveLeft & !moveForward)
 				{
-					cam->getComponent<Transform>()->Translate(1.0f, 0.0f, 0.0f);
+					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, 0.0f);
 				}
 				
 				// COMMENTED OUT MOUSE MOVEMENT TO ROTATE CAMERA
@@ -176,7 +203,7 @@ namespace tomsengine
 				for (std::vector<std::shared_ptr<Entity>>::iterator it2 = entities.begin();
 					it2 != entities.end(); it2++)   // Loop through all the entities
 				{
-					if (*it == *it2 || (*it)->getComponent<BoxCollider>() == false || (*it2)->getComponent<BoxCollider>() == false)   // Will only check collisions if more than one entity has a box collider in scene
+					if (*it == *it2 || (*it)->hasComponent<BoxCollider>() == false || (*it2)->hasComponent<BoxCollider>() == false)
 					{
 						continue;
 					}
