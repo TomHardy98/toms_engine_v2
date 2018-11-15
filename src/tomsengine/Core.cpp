@@ -69,11 +69,18 @@ namespace tomsengine
 		float mouseRelY = 0.0f;
 		float mouseSense = 0.004f;
 
-		unsigned int lastTime = SDL_GetTicks();
+		Uint64 now = SDL_GetPerformanceCounter();
+		Uint64 last = 0;
+		double deltaTs = 0;
 
 		while (running)   // While running is true
 		{
 			SDL_Event event = { 0 };   // Create an SDL event array and initialise all to 0
+
+			// Setting up Delta Time
+			last = now;
+			now = SDL_GetPerformanceCounter();
+			deltaTs = (double)((now - last) * 1000 / (double)SDL_GetPerformanceFrequency());
 
 			while (SDL_PollEvent(&event))   // If an event happens
 			{
@@ -122,11 +129,6 @@ namespace tomsengine
 					break;
 				}
 
-				// Setting up Delta Time
-				unsigned int presentTime = SDL_GetTicks();
-				float deltaTs = (float)(presentTime - lastTime) / 1000.0f;
-				lastTime - presentTime;
-
 				if (moveForward & !moveBack & !moveLeft & !moveRight)
 				{
 					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, -0.1f * deltaTs);
@@ -134,27 +136,27 @@ namespace tomsengine
 
 				if (moveForward && moveLeft & !moveBack & !moveRight)
 				{
-					cam->getComponent<Transform>()->Translate(-0.1f, 0.0f, -0.1f * deltaTs);
+					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, -0.1f * deltaTs);
 				}
 
 				if (moveForward && moveRight & !moveBack & !moveLeft)
 				{
-					cam->getComponent<Transform>()->Translate(0.1f, 0.0f, -0.1f * deltaTs);
+					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, -0.1f * deltaTs);
+				}
+
+				if (moveBack && moveLeft & !moveForward & !moveRight)
+				{
+					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, 0.1f * deltaTs);
+				}
+
+				if (moveBack && moveRight & !moveForward & !moveLeft)
+				{
+					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, 0.1f * deltaTs);
 				}
 
 				if (moveBack & !moveForward & !moveLeft & !moveRight)
 				{
 					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.1f * deltaTs);
-				}
-
-				if (moveBack && moveLeft & !moveForward & !moveRight)
-				{
-					cam->getComponent<Transform>()->Translate(-0.1f, 0.0f, 0.1f * deltaTs);
-				}
-
-				if (moveBack && moveRight & !moveForward & !moveLeft)
-				{
-					cam->getComponent<Transform>()->Translate(0.1f, 0.0f, 0.1f * deltaTs);
 				}
 
 				if (moveLeft & !moveBack & !moveForward & !moveRight)
