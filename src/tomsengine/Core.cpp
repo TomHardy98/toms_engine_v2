@@ -73,6 +73,8 @@ namespace tomsengine
 		Uint64 last = 0;
 		double deltaTs = 0;
 
+		float velocity = 0.1f;
+
 		while (running)   // While running is true
 		{
 			SDL_Event event = { 0 };   // Create an SDL event array and initialise all to 0
@@ -197,6 +199,14 @@ namespace tomsengine
 				*/
 			}
 
+			// Moving one entity on the y axis
+			entities[0]->getComponent<Transform>()->Translate(0.0f, velocity, 0.0f);
+
+			if ((entities[0]->getComponent<Transform>()->getPosition().y <= -5 && velocity < 0) || (entities[0]->getComponent<Transform>()->getPosition().y >= 5 && velocity > 0))
+			{
+				velocity = -velocity;
+			}
+
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities
 			{
@@ -220,6 +230,12 @@ namespace tomsengine
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);   // Set screen colour
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Clear colour buffer and depth buffer
+
+			// Loop through list of entities , check for camera component then add to vector of cameras
+
+			// Loop through cameras vector and call reveal on all and call setCurrentCamera function. Which takes a shared_ptr<Camera> and sets it and then returns the camera
+			
+			// Then need to set in MeshRenderer under ProjectionMatrix
 
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities

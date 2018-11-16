@@ -26,7 +26,6 @@ namespace tomsengine
 			}
 		}
 
-		std::cout << "No collision has occured" << std::endl;
 		return false;
 	}
 }

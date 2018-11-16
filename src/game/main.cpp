@@ -25,6 +25,7 @@ void safe_main()
 	au->play();   // Play the audio clip
 
 	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
+	cam->addComponent<BoxCollider>();
 
 	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
 	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
