@@ -4,12 +4,11 @@
 #include "Shader.h"
 #include "Transform.h"
 #include "Entity.h"
+#include "Camera.h"
+#include "Core.h"
 
 #include <iostream>   // Allows for the use of output to the command console
 #include <glm/ext.hpp>   // Allows for the use of GLM
-
-#define WINDOW_WIDTH 1200   // Defining window width
-#define WINDOW_HEIGHT 800   // Defining window height
 
 namespace tomsengine
 {
@@ -24,9 +23,9 @@ namespace tomsengine
 	{
 		shader->setUniform("in_Model", getEntity()->getComponent<Transform>()->getModelMatrix());   // Set the model matrix
 		
-		shader->setUniform("in_Projection", glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.1f, 100.0f));   // Set the projection matrix
+		shader->setUniform("in_Projection", getCore()->getCurrCam()->getProjMatrix());   // Set the projection matrix
 		
-		shader->setUniform("in_View", camera->getComponent<Transform>()->getViewMatrix());	  // Set the view matrix
+		shader->setUniform("in_View", getCore()->getCurrCam()->getEntity()->getComponent<Transform>()->getViewMatrix());	  // Set the view matrix
 		
 		shader->setUniform("in_Texture", tex);   // Set the texture
 

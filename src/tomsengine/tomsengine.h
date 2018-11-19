@@ -9,5 +9,6 @@
 #include "Texture.h"
 #include "Transform.h"
 #include "BoxCollider.h"
+#include "Camera.h"
 
 #endif

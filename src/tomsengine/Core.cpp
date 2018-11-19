@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Transform.h"
 #include "BoxCollider.h"
+#include "Camera.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
@@ -72,6 +73,8 @@ namespace tomsengine
 		Uint64 now = SDL_GetPerformanceCounter();
 		Uint64 last = 0;
 		double deltaTs = 0;
+
+		//self = getPtrToThis();
 
 		float velocity = 0.1f;
 
@@ -199,6 +202,8 @@ namespace tomsengine
 				*/
 			}
 
+			std::vector < std::shared_ptr<Entity>> cameras;
+
 			// Moving one entity on the y axis
 			entities[0]->getComponent<Transform>()->Translate(0.0f, velocity, 0.0f);
 
@@ -211,6 +216,11 @@ namespace tomsengine
 				it != entities.end(); it++)   // Loop through all the entities
 			{
 				(*it)->tick();   // Call the tick function for each entity
+
+				if ((*it)->hasComponent<Camera>() == true)
+				{
+					cameras.push_back(*it);
+				}
 
 				for (std::vector<std::shared_ptr<Entity>>::iterator it2 = entities.begin();
 					it2 != entities.end(); it2++)   // Loop through all the entities
@@ -231,13 +241,14 @@ namespace tomsengine
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);   // Set screen colour
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Clear colour buffer and depth buffer
 
-			// Loop through list of entities , check for camera component then add to vector of cameras
+			for (std::vector<std::shared_ptr<Entity> >::iterator it = cameras.begin();
+				it != cameras.end(); it++)   // Loop through all the entities
+			{
+				setCurrCam((*it)->getComponent<Camera>());
+				(*it)->reveal();
+			}
 
-			// Loop through cameras vector and call reveal on all and call setCurrentCamera function. Which takes a shared_ptr<Camera> and sets it and then returns the camera
-			
-			// Then need to set in MeshRenderer under ProjectionMatrix
-
-			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
+			for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities
 			{
 				(*it)->reveal();   // Call the reveal function for each entity
@@ -260,10 +271,20 @@ namespace tomsengine
 	{
 		std::shared_ptr<Entity> rtn = std::make_shared<Entity>();   // rtn is a shared pointer of Entity
 		entities.push_back(rtn);   // Push back rtn on entities vector
+		rtn->core = self;
 		rtn->setDefaultTransformPositions();   // Give every entity a transform component
 		rtn->self = rtn;   // Set return back
-		rtn->core = self;   // Set core back
 
 		return rtn;   // Return rtn
+	}
+
+	void Core::setCurrCam(std::shared_ptr<Camera> _cam)
+	{
+		currCam = _cam;
+	}
+
+	std::shared_ptr<Camera> Core::getCurrCam()
+	{
+		return currCam.lock();
 	}
 }
