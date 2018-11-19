@@ -7,9 +7,11 @@
 
 #include <string>   // Allows for the use of strings
 
+#include "NonCopyable.h"
+
 namespace tomsengine
 {
-	class Texture
+	class Texture : private NonCopyable
 	{
 		GLuint id;   // Declaring GLuint variable called id
 		glm::vec2 size;   // Declaring vec2 variable called size

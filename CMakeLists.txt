@@ -56,6 +56,7 @@ add_library(tomsengine
   src/tomsengine/BoxCollider.h
   src/tomsengine/Camera.cpp
   src/tomsengine/Camera.h
+  src/tomsengine/NonCopyable.h
 )
 
 add_executable(game

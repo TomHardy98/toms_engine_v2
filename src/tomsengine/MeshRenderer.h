@@ -1,5 +1,6 @@
 #include "Component.h"
 #include "Texture.h"
+#include "NonCopyable.h"
 
 #include <memory>   // Allows for the use of pointers
 
@@ -8,7 +9,7 @@ namespace tomsengine
 	class VertexArray;   // Gives access to the VertexArray class
 	class Shader;   // Gives access to the Shader class
 
-	class MeshRenderer : public Component   // MeshRenderer class inherits from Component
+	class MeshRenderer : public Component, private NonCopyable   // MeshRenderer class inherits from Component
 	{
 	public:
 		void onInit();   // Defining onInit function
