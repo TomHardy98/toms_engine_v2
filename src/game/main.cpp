@@ -19,10 +19,13 @@ void safe_main()
 	shared<Entity> entity2 = core->addEntity();
 	shared<Entity> mainCam = core->addEntity();
 
-	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();   // Add a mesh renderer to the 'entity' inside 'core'
+	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();  // Add a mesh renderer to the 'entity' inside 'core'
 	shared<MeshRenderer> mr2 = entity2->addComponent<MeshRenderer>();
 
 	mainCam->addComponent<Camera>();
+
+	entity->getComponent<MeshRenderer>()->chooseCube();
+	entity2->getComponent<MeshRenderer>()->chooseCone();
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 

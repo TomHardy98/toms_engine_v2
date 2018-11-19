@@ -12,12 +12,18 @@ namespace tomsengine
 	class MeshRenderer : public Component, private NonCopyable   // MeshRenderer class inherits from Component
 	{
 	public:
+
 		void onInit();   // Defining onInit function
 
-	private:
-		void onReveal();   // Defining onReveal function
+		void chooseCube();
+		void chooseCone();
 
 		std::shared_ptr<VertexArray> shape;   // Creating a shared pointer of vertex array called shape
+
+	private:
+
+		void onReveal();   // Defining onReveal function
+
 		std::shared_ptr<Shader> shader;   // Creating a shared pointer of shader called shader
 		std::shared_ptr<Texture> tex;   // Creating a shared pointer of texture called tex
 	};
