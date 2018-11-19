@@ -29,12 +29,15 @@ void safe_main()
 	au->play();   // Play the audio clip
 
 	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
+	entity2->addComponent<BoxCollider>();   // Adding a box collider to entity2
 
 	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
 	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
+	entity->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
 
-	entity2->getComponent<Transform>()->Translate(-3.0f, 0.0f, 0.0f);   // Move entity component using transform component
+	entity2->getComponent<Transform>()->Translate(0.0f, -3.0f, 0.0f);   // Move entity component using transform component
 	entity2->getComponent<Transform>()->Rotate(6.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
+	entity2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
 
 	mainCam->getComponent<Transform>()->Translate(0.0f, 0.0f, 10.0f);
 
