@@ -1,4 +1,5 @@
 #include "Transform.h"
+#include "Entity.h"
 
 #include <glm/ext.hpp>   // Allows for the use of GLM
 #include <memory>

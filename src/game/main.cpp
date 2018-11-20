@@ -27,7 +27,7 @@ void safe_main()
 	cube->addComponent<BoxCollider>();
 	cubeMr->chooseCube();
 	cube->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-	cube->getComponent<Transform>()->Translate(0.0f, 4.0f, 0.0f);
+	cube->getComponent<Transform>()->Translate(4.0f, 0.0f, 0.0f);
 
 	// Creating cube (Every entity with a box collider automatically moves up and down)
 	shared<Entity> cube2 = core->addEntity();
@@ -35,7 +35,7 @@ void safe_main()
 	cube2->addComponent<BoxCollider>();
 	cubeMr2->chooseCube();
 	cube2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-	cube2->getComponent<Transform>()->Translate(0.0f, -4.0f, 0.0f);
+	cube2->getComponent<Transform>()->Translate(-3.0f, 0.0f, 0.0f);
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
