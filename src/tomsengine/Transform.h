@@ -34,7 +34,7 @@ namespace tomsengine
 		glm::vec3 getScale() { return scale; }
 		void setScale(float x3, float y3, float z3) { scale.x = x3; scale.y = y3; scale.z = z3; }   // Used for setting default scale of Entity
 
-		float velocity = 0.1f;
+		float velocity = 0.05f;
 
 	private:
 

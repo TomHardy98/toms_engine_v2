@@ -33,9 +33,9 @@ namespace tomsengine
 
 	glm::mat4 Transform::getModelMatrix()
 	{
-		rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.y, glm::vec3(1, 0, 0));
-		rotationMatrix = glm::rotate(rotationMatrix, rotation.x, glm::vec3(0, 1, 0));
-		rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0, 0, 1));
+		rotationMatrix = glm::rotate(glm::mat4(1.0f), rotation.y, glm::vec3(1.0f, 0.0f, 0.0f));
+		rotationMatrix = glm::rotate(rotationMatrix, rotation.x, glm::vec3(0.0f, 1.0f, 0.0f));
+		rotationMatrix = glm::rotate(rotationMatrix, rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
 		modelMatrix = glm::translate(glm::mat4(1.0f), position) * rotationMatrix * glm::scale(glm::mat4(1), scale);
 
