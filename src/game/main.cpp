@@ -24,12 +24,13 @@ void safe_main()
 	shared<MeshRenderer> EntityMr = entity->addComponent<MeshRenderer>();  // Add a mesh renderer to the 'entity' inside 'core'
 
 	EntityMr->chooseCube();   // Chooses a cube
+	//EntityMr->chooseTexture("../data/textures/rainbow.jpg");   // Giving the mesh renderer a texture
 
 	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
 
 	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
-	entity->getComponent<Transform>()->Rotate(0.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	entity->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+	entity->getComponent<Transform>()->Rotate(8.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
+	entity->getComponent<Transform>()->Scale(0.5f, 0.5f, 0.5f);
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 

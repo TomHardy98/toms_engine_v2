@@ -22,13 +22,15 @@ namespace tomsengine
 		void chooseCylinder();
 		void chooseCustomMesh(const std::string& _mesh);
 
+		void chooseTexture(const std::string& _texture);
+
 		std::shared_ptr<VertexArray> shape;   // Creating a shared pointer of vertex array called shape
+		std::shared_ptr<Texture> tex;   // Creating a shared pointer of texture called tex
 
 	private:
 
 		void onReveal();   // Defining onReveal function
 
 		std::shared_ptr<Shader> shader;   // Creating a shared pointer of shader called shader
-		std::shared_ptr<Texture> tex;   // Creating a shared pointer of texture called tex
 	};
 }
