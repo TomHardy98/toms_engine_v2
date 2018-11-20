@@ -76,8 +76,6 @@ namespace tomsengine
 
 		//self = getPtrToThis();
 
-		float velocity = 0.1f;
-
 		while (running)   // While running is true
 		{
 			SDL_Event event = { 0 };   // Create an SDL event array and initialise all to 0
@@ -176,8 +174,8 @@ namespace tomsengine
 				
 				// COMMENTED OUT MOUSE MOVEMENT TO ROTATE CAMERA
 
-				/*
-				if (event.type == SDL_MOUSEMOTION) 
+				
+				/*if (event.type == SDL_MOUSEMOTION) 
 				{
 					mouseMotion = true;
 
@@ -198,18 +196,25 @@ namespace tomsengine
 				{
 					mouseMotion = false;
 					cam->getComponent<Transform>()->Rotate((mouseRelX * mouseSense), (mouseRelY * mouseSense), 0.0f);
-				}
-				*/
+				}*/
+				
 			}
 
 			std::vector < std::shared_ptr<Entity>> cameras;
 
-			// Moving one entity on the y axis
-			entities[0]->getComponent<Transform>()->Translate(0.0f, velocity, 0.0f);
-
-			if ((entities[0]->getComponent<Transform>()->getPosition().y <= -5 && velocity < 0) || (entities[0]->getComponent<Transform>()->getPosition().y >= 5 && velocity > 0))
+			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
+				it != entities.end(); it++)   // Loop through all the entities
 			{
-				velocity = -velocity;
+				if ((*it)->hasComponent<BoxCollider>() == true)
+				{
+					(*it)->getComponent<Transform>()->Translate(0.0f, (*it)->getComponent<Transform>()->velocity, 0.0f);
+
+					if (((*it)->getComponent<Transform>()->getPosition().y <= -5 && (*it)->getComponent<Transform>()->velocity < 0) || ((*it)->getComponent<Transform>()->getPosition().y >= 5
+						&& (*it)->getComponent<Transform>()->velocity > 0))
+					{
+						(*it)->getComponent<Transform>()->velocity = -(*it)->getComponent<Transform>()->velocity;
+					}
+				}
 			}
 
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();

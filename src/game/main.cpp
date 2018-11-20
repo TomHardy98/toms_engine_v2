@@ -11,26 +11,31 @@ using namespace tomsengine;
 
 void safe_main()
 {
+	// Creating core
 	shared<Core> core = std::make_shared<Core>();   // Initialize the engine (SDL) and name it 'core'
 	std::shared_ptr<Core> ptr = core->getPtrToThis();   // Setting cores 'self'
 	core->self = ptr;   // Setting cores 'self'
 
+	// Creating main camera
 	shared<Entity> mainCam = core->addEntity();
 	mainCam->addComponent<Camera>();
 	mainCam->getComponent<Transform>()->Translate(0.0f, 0.0f, 10.0f);
 
-	shared<Entity> entity = core->addEntity();   // Create an in-game object (entity with a transform and collision component) and add it to the core
+	// Creating cube (Every entity with a box collider automatically moves up and down)
+	shared<Entity> cube = core->addEntity();
+	shared<MeshRenderer> cubeMr = cube->addComponent<MeshRenderer>();
+	cube->addComponent<BoxCollider>();
+	cubeMr->chooseCube();
+	cube->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+	cube->getComponent<Transform>()->Translate(0.0f, 4.0f, 0.0f);
 
-	shared<MeshRenderer> EntityMr = entity->addComponent<MeshRenderer>();  // Add a mesh renderer to the 'entity' inside 'core'
-
-	EntityMr->chooseCube();   // Chooses a cube
-	//EntityMr->chooseTexture("../data/textures/rainbow.jpg");   // Giving the mesh renderer a texture
-
-	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
-
-	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
-	entity->getComponent<Transform>()->Rotate(0.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	entity->getComponent<Transform>()->Scale(0.0f, 0.0f, 0.0f);
+	// Creating cube (Every entity with a box collider automatically moves up and down)
+	shared<Entity> cube2 = core->addEntity();
+	shared<MeshRenderer> cubeMr2 = cube2->addComponent<MeshRenderer>();
+	cube2->addComponent<BoxCollider>();
+	cubeMr2->chooseCube();
+	cube2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+	cube2->getComponent<Transform>()->Translate(0.0f, -4.0f, 0.0f);
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 

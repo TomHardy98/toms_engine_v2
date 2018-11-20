@@ -20,6 +20,7 @@ namespace tomsengine
 				if (getEntity()->getComponent<Transform>()->getPosition().z <= (otherEntity->getComponent<Transform>()->getPosition().z + otherEntity->getComponent<Transform>()->getScale().z / 1)
 					&& getEntity()->getComponent<Transform>()->getPosition().z >= (otherEntity->getComponent<Transform>()->getPosition().z - otherEntity->getComponent<Transform>()->getScale().z / 1))
 				{
+					getEntity()->getComponent<Transform>()->velocity = -getEntity()->getComponent<Transform>()->velocity;
 					std::cout << "Collision has occured!" << std::endl;
 					return true;
 				}
