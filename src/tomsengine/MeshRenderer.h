@@ -17,6 +17,10 @@ namespace tomsengine
 
 		void chooseCube();
 		void chooseCone();
+		void choosePlane();
+		void chooseSphere();
+		void chooseCylinder();
+		void chooseCustomMesh(const std::string& _mesh);
 
 		std::shared_ptr<VertexArray> shape;   // Creating a shared pointer of vertex array called shape
 

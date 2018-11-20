@@ -15,7 +15,7 @@ namespace tomsengine
 	void MeshRenderer::onInit()   // MeshRenderer onInit function
 	{
 		shader = std::make_shared<Shader>("../data/shaders/vertexShader.txt", "../data/shaders/fragmentShader.txt");   // Set shaders using txt files in data/shaders/ folder
-		//shape = std::make_shared<VertexArray>("../data/meshes/cube.obj");   // Default shape
+		shape = std::make_shared<VertexArray>("../data/meshes/cube.obj");   // Sets default shape to a cube
 		tex = std::make_shared<Texture>("../data/textures/dog.png");   // Set texture using png/jpg file in data/textures/ folder
 	}
 
@@ -40,5 +40,25 @@ namespace tomsengine
 	void MeshRenderer::chooseCone()
 	{
 		shape = std::make_shared<VertexArray>("../data/meshes/cone.obj");
+	}
+
+	void MeshRenderer::choosePlane()
+	{
+		shape = std::make_shared<VertexArray>("../data/meshes/plane.obj");
+	}
+
+	void MeshRenderer::chooseSphere()
+	{
+		shape = std::make_shared<VertexArray>("../data/meshes/sphere.obj");
+	}
+
+	void MeshRenderer::chooseCylinder()
+	{
+		shape = std::make_shared<VertexArray>("../data/meshes/cylinder.obj");
+	}
+
+	void MeshRenderer::chooseCustomMesh(const std::string& _mesh)
+	{
+		shape = std::make_shared<VertexArray>(_mesh);
 	}
 }

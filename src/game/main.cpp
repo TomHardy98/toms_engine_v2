@@ -15,34 +15,25 @@ void safe_main()
 	std::shared_ptr<Core> ptr = core->getPtrToThis();   // Setting cores 'self'
 	core->self = ptr;   // Setting cores 'self'
 
-	shared<Entity> entity = core->addEntity();   // Create an in-game object (entity with a transform and collision component) and add it to the core
-	shared<Entity> entity2 = core->addEntity();
 	shared<Entity> mainCam = core->addEntity();
-
-	shared<MeshRenderer> mr = entity->addComponent<MeshRenderer>();  // Add a mesh renderer to the 'entity' inside 'core'
-	shared<MeshRenderer> mr2 = entity2->addComponent<MeshRenderer>();
-
 	mainCam->addComponent<Camera>();
+	mainCam->getComponent<Transform>()->Translate(0.0f, 0.0f, 10.0f);
 
-	entity->getComponent<MeshRenderer>()->chooseCube();
-	entity2->getComponent<MeshRenderer>()->chooseCone();
+	shared<Entity> entity = core->addEntity();   // Create an in-game object (entity with a transform and collision component) and add it to the core
+
+	shared<MeshRenderer> EntityMr = entity->addComponent<MeshRenderer>();  // Add a mesh renderer to the 'entity' inside 'core'
+
+	EntityMr->chooseCube();   // Chooses a cube
+
+	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
+
+	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
+	entity->getComponent<Transform>()->Rotate(0.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
+	entity->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
 	au->play();   // Play the audio clip
-
-	entity->addComponent<BoxCollider>();   // Adding a box collider to entity
-	entity2->addComponent<BoxCollider>();   // Adding a box collider to entity2
-
-	entity->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);   // Move entity component using transform component
-	entity->getComponent<Transform>()->Rotate(-10.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	entity->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-
-	entity2->getComponent<Transform>()->Translate(0.0f, -3.0f, 0.0f);   // Move entity component using transform component
-	entity2->getComponent<Transform>()->Rotate(6.0f, 0.0f, 0.0f);   // Rotate entity component using transform component
-	entity2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-
-	mainCam->getComponent<Transform>()->Translate(0.0f, 0.0f, 10.0f);
 
 	core->Start(mainCam);
 }
