@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "BoxCollider.h"
 #include "Camera.h"
+#include "RenderTexture.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
@@ -73,8 +74,6 @@ namespace tomsengine
 		Uint64 now = SDL_GetPerformanceCounter();
 		Uint64 last = 0;
 		double deltaTs = 0;
-
-		//self = getPtrToThis();
 
 		while (running)   // While running is true
 		{

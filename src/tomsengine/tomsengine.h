@@ -10,5 +10,7 @@
 #include "Transform.h"
 #include "BoxCollider.h"
 #include "Camera.h"
+#include "NonCopyable.h"
+#include "RenderTexture.h"
 
 #endif

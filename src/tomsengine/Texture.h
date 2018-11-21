@@ -11,10 +11,16 @@
 
 namespace tomsengine
 {
+	class RenderTexture;
+
 	class Texture : private NonCopyable
 	{
+		friend class RenderTexture;
+
 		GLuint id;   // Declaring GLuint variable called id
 		glm::vec2 size;   // Declaring vec2 variable called size
+
+		Texture(int width, int height);
 
 	public:
 

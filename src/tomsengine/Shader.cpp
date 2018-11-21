@@ -1,6 +1,8 @@
 #include "Shader.h"
 #include "VertexArray.h"
+#include "VertexBuffer.h"
 #include "Texture.h"
+#include "RenderTexture.h"
 
 #include <glm/ext.hpp>   // Allows for the use of GLM
 
@@ -93,8 +95,24 @@ namespace tomsengine
 		glDeleteShader(fragmentShaderId);   // Delete fragmentShader
 	}
 
+	void Shader::draw(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, renderTexture->getFbId());
+		glm::vec4 lastViewport = viewport;
+		viewport = glm::vec4(0, 0, renderTexture->getSize().x, renderTexture->getSize().y);
+		draw(vertexArray);
+		viewport = lastViewport;
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	}
+
+	void Shader::draw2(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray)
+	{
+		draw(renderTexture, vertexArray);
+	}
+
 	void Shader::draw(std::shared_ptr<VertexArray> vertexArray)   // Shader draw function
 	{
+		glViewport(viewport.x, viewport.y, viewport.z, viewport.w);
 		glUseProgram(id);   // Use program using id
 		glBindVertexArray(vertexArray->getId());   // Bind the vertexArray shader
 
@@ -113,6 +131,12 @@ namespace tomsengine
 		}
 
 		glDrawArrays(GL_TRIANGLES, 0, vertexArray->getVertexCount());   // Draw the object using vertexArray
+
+		for (size_t i = 0; i < samplers.size(); i++)
+		{
+			glActiveTexture(GL_TEXTURE0 + i);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
 
 		glBindVertexArray(0);   // Unbind vertexArray
 		glUseProgram(0);   // Stop using program
@@ -144,6 +168,20 @@ namespace tomsengine
 		glUseProgram(id);   // Use program using id
 		glUniform1f(uniformId, value);   // Set uniform
 		glUseProgram(0);   // Stop using program
+	}
+
+	void Shader::setUniform(std::string uniform, int value)
+	{
+		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+
+		if (uniformId == -1)
+		{
+			throw std::exception();
+		}
+
+		glUseProgram(id);
+		glUniform1i(uniformId, value);
+		glUseProgram(0);
 	}
 
 	void Shader::setUniform(std::string uniform, glm::mat4 value)   // Set uniform using mat4 function
@@ -195,5 +233,10 @@ namespace tomsengine
 	GLuint Shader::getId()   // Shader getId function
 	{
 		return id;   // Return id
+	}
+
+	void Shader::setViewport(glm::vec4 viewport)
+	{
+		this->viewport = viewport;
 	}
 }
