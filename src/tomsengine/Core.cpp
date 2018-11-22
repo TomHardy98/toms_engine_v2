@@ -22,7 +22,7 @@ namespace tomsengine
 			throw std::exception();   // Throw exception
 		}
 
-		window = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_UNDEFINED,
+		window = SDL_CreateWindow("toms_engine_v2", SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);   // Create an SDL window
 
 		if (!SDL_GL_CreateContext(window))   // If the window didnt get created
