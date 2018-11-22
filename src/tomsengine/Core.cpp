@@ -244,8 +244,6 @@ namespace tomsengine
 
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);   // Set screen colour
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Clear colour buffer and depth buffer
-			glEnable(GL_CULL_FACE);
-			glCullFace(GL_BACK);
 
 			for (std::vector<std::shared_ptr<Entity> >::iterator it = cameras.begin();
 				it != cameras.end(); it++)   // Loop through all the entities
