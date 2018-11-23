@@ -6,12 +6,13 @@
 #include "RenderTexture.h"
 #include "RTComponent.h"
 #include "MeshRenderer.h"
+#include "Enemy.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
 
-#define WINDOW_WIDTH 1200   // Defining window width
-#define WINDOW_HEIGHT 800   // Defining window height
+#define WINDOW_WIDTH 600  // Defining window width
+#define WINDOW_HEIGHT 900   // Defining window height
 
 namespace tomsengine
 {
@@ -210,8 +211,8 @@ namespace tomsengine
 				{
 					(*it)->getComponent<Transform>()->Translate((*it)->getComponent<Transform>()->velocity, 0.0f, 0.0f);
 
-					if (((*it)->getComponent<Transform>()->getPosition().x <= -5 && (*it)->getComponent<Transform>()->velocity < 0) || ((*it)->getComponent<Transform>()->getPosition().x >= 5
-						&& (*it)->getComponent<Transform>()->velocity > 0))
+					if (((*it)->getComponent<Transform>()->getPosition().x <= -2.5f && (*it)->getComponent<Transform>()->velocity < 0.0f) || ((*it)->getComponent<Transform>()->getPosition().x >= 2.5f
+						&& (*it)->getComponent<Transform>()->velocity > 0.0f))
 					{
 						(*it)->getComponent<Transform>()->velocity = -(*it)->getComponent<Transform>()->velocity;
 					}

@@ -36,6 +36,8 @@ namespace tomsengine
 
 		std::vector<std::shared_ptr<Entity>> entities;   // Shared pointer to a vector of entities
 
+		std::vector<std::shared_ptr<Entity>> enemies;
+
 		std::weak_ptr<Camera> currCam;
 
 		ALCdevice* device;   // Represents a hardware device

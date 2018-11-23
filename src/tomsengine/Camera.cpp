@@ -1,8 +1,8 @@
 #include "Camera.h"
 #include "Transform.h"
 
-#define WINDOW_WIDTH 1200   // Defining window width
-#define WINDOW_HEIGHT 800   // Defining window height
+#define WINDOW_WIDTH 600   // Defining window width
+#define WINDOW_HEIGHT 900   // Defining window height
 
 namespace tomsengine
 {
