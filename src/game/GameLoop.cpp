@@ -16,29 +16,41 @@ void GameLoop::Start()
 	// Creating main camera
 	shared<Entity> mainCam = core->addEntity();
 	mainCam->addComponent<Camera>();
-	mainCam->getComponent<Transform>()->Translate(0.0f, 0.0f, 10.0f);
+	mainCam->getComponent<Transform>()->Translate(0.0f, 5.0f, 10.0f);
 
-	// Creating cube (Every entity with a box collider automatically moves up and down)
-	shared<Entity> cube = core->addEntity();
+	shared<Entity> background = core->addEntity();
+	shared<MeshRenderer> backgroundMr = background->addComponent<MeshRenderer>();
+	backgroundMr->chooseCube();
+	backgroundMr->chooseTexture("../data/textures/skybox.png");
+	background->getComponent<Transform>()->Translate(0.0f, 5.0f, -10.0f);
+	background->getComponent<Transform>()->Rotate(110.0f, 0.0f, 0.0f);
+	background->getComponent<Transform>()->Scale(5.0f, 5.0f, 5.0f);
 
-	shared<MeshRenderer> cubeMr = cube->addComponent<MeshRenderer>();
-	cubeMr->chooseCube();
-	cubeMr->chooseTexture("../data/textures/box.jpg");
+	for (float i = 0.0f; i < 15.0f; i+= 2.0f)
+	{
+		shared<Entity> cube = core->addEntity();
 
-	cube->addComponent<BoxCollider>();
-	cube->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-	cube->getComponent<Transform>()->Translate(4.0f, 0.0f, 0.0f);
+		shared<MeshRenderer> cubeMr = cube->addComponent<MeshRenderer>();
+		cubeMr->chooseCube();
+		cubeMr->chooseTexture("../data/textures/box.jpg");
 
-	// Creating cube2 (Every entity with a box collider automatically moves up and down)
-	shared<Entity> cube2 = core->addEntity();
+		cube->addComponent<BoxCollider>();
+		cube->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+		cube->getComponent<Transform>()->Translate(0.0f, i, 0.0f);
+	}
 
-	shared<MeshRenderer> cubeMr2 = cube2->addComponent<MeshRenderer>();
-	cubeMr2->chooseCube();
-	cubeMr2->chooseTexture("../data/textures/box.jpg");
+	for (float i = 0.0f; i < 15.0f; i += 2.0f)
+	{
+		shared<Entity> cube2 = core->addEntity();
 
-	cube2->addComponent<BoxCollider>();
-	cube2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
-	cube2->getComponent<Transform>()->Translate(-3.0f, 0.0f, 0.0f);
+		shared<MeshRenderer> cubeMr2 = cube2->addComponent<MeshRenderer>();
+		cubeMr2->chooseCube();
+		cubeMr2->chooseTexture("../data/textures/box.jpg");
+
+		cube2->addComponent<BoxCollider>();
+		cube2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+		cube2->getComponent<Transform>()->Translate(-3.0f, i, 0.0f);
+	}
 
 	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
 
