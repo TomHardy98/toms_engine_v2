@@ -65,6 +65,8 @@ add_library(tomsengine
 
 add_executable(game
   src/game/main.cpp
+  src/game/GameLoop.cpp
+  src/game/GameLoop.h
 )
 
 target_link_libraries(game tomsengine)
