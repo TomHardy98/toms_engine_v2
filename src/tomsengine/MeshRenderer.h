@@ -30,7 +30,7 @@ namespace tomsengine
 
 		std::shared_ptr<Texture> tex;   // Creating a shared pointer of texture called tex
 
-		std::shared_ptr<RenderTexture> rt;
+		std::shared_ptr<RenderTexture> tempRt;
 
 	private:
 

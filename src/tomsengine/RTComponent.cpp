@@ -7,12 +7,8 @@
 
 namespace tomsengine
 {
-	std::shared_ptr<RTComponent> grt;
-
 	void RTComponent::onInit()
 	{
-		grt = std::make_shared<RTComponent>();
-
 		lightkeyShader = std::make_shared<Shader>("../data/shaders/lightkeyShader.vert", "../data/shaders/lightkeyShader.frag");
 
 		nullShader = std::make_shared<Shader>("../data/shaders/nullShader.vert", "../data/shaders/nullShader.frag");

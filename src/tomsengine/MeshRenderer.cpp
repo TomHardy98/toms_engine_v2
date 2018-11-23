@@ -13,8 +13,6 @@
 
 namespace tomsengine
 {
-	extern std::shared_ptr<RTComponent> grt;
-
 	void MeshRenderer::onInit()   // MeshRenderer onInit function
 	{
 		shader = std::make_shared<Shader>("../data/shaders/vertexShader.vert", "../data/shaders/fragmentShader.frag");   // Set shaders using txt files in data/shaders/ folder
@@ -34,7 +32,15 @@ namespace tomsengine
 		
 		shader->setUniform("in_Texture", tex);   // Set the texture
 
-		shader->draw(grt->rt, shape);
+		if (getEntity()->hasComponent<RTComponent>() == true)
+		{
+			tempRt = getEntity()->getComponent<RTComponent>()->rt;
+			shader->draw(tempRt, shape);
+		}
+		else
+		{
+			shader->draw(shape);
+		}
 	}
 
 	void MeshRenderer::chooseCube()
