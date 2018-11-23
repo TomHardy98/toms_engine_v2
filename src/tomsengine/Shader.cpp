@@ -93,6 +93,27 @@ namespace tomsengine
 		glDeleteShader(vertexShaderId);   // Delete vertexShader
 		glDetachShader(id, fragmentShaderId);   // Detach fragmentShader
 		glDeleteShader(fragmentShaderId);   // Delete fragmentShader
+
+		VertexBuffer *positions = new VertexBuffer();
+		positions->add(glm::vec2(-1.0f, 1.0f));
+		positions->add(glm::vec2(-1.0f, -1.0f));
+		positions->add(glm::vec2(1.0f, -1.0f));
+		positions->add(glm::vec2(1.0f, -1.0f));
+		positions->add(glm::vec2(1.0f, 1.0f));
+		positions->add(glm::vec2(-1.0f, 1.0f));
+
+		VertexBuffer *texCoords = new VertexBuffer();
+		texCoords->add(glm::vec2(0.0f, 0.0f));
+		texCoords->add(glm::vec2(0.0f, -1.0f));
+		texCoords->add(glm::vec2(1.0f, -1.0f));
+		texCoords->add(glm::vec2(1.0f, -1.0f));
+		texCoords->add(glm::vec2(1.0f, 0.0f));
+		texCoords->add(glm::vec2(0.0f, 0.0f));
+
+		simpleShape = std::make_shared<VertexArray>();
+		simpleShape->setBuffer("in_Position", positions);
+		simpleShape->setBuffer("in_TexCoord", texCoords);
+
 	}
 
 	void Shader::draw(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray)
@@ -105,9 +126,14 @@ namespace tomsengine
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 
-	void Shader::draw2(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray)
+	void Shader::draw(std::shared_ptr<RenderTexture> renderTexture)
 	{
-		draw(renderTexture, vertexArray);
+		draw(renderTexture, simpleShape);
+	}
+
+	void Shader::draw()
+	{
+		draw(simpleShape);
 	}
 
 	void Shader::draw(std::shared_ptr<VertexArray> vertexArray)   // Shader draw function

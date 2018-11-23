@@ -57,30 +57,30 @@ namespace tomsengine
 		
 		shader->setUniform("in_Texture", tex);   // Set the texture
 
-		shader->draw(rt, shape);   // Shader calls draw function using obj given
+		shader->draw(rt, shape);
 
 		glDisable(GL_DEPTH_TEST);
 		glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
 		lightkeyShader->setUniform("in_Texture", rt);
-		lightkeyShader->draw(lightkeyRt, shape);
+		lightkeyShader->draw(lightkeyRt);
 
 		blurShader->setUniform("in_Texture", lightkeyRt);
-		blurShader->draw(blurRt, shape);
+		blurShader->draw(blurRt);
 
 		blurShader->setUniform("in_Texture", blurRt);
-		blurShader->draw(blur2Rt, shape);
+		blurShader->draw(blur2Rt);
 
 		blurShader->setUniform("in_Texture", blur2Rt);
-		blurShader->draw(blur3Rt, shape);
+		blurShader->draw(blur3Rt);
 
 		mergeShader->setUniform("in_TextureA", rt);
 		mergeShader->setUniform("in_TextureB", blur3Rt);
-		mergeShader->draw(mergeRt, shape);
+		mergeShader->draw(mergeRt);
 
 		nullShader->setViewport(glm::vec4(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
 		nullShader->setUniform("in_Texture", rt);
-		nullShader->draw(shape);
+		nullShader->draw();
 	}
 
 	void MeshRenderer::chooseCube()

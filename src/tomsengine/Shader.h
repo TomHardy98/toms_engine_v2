@@ -22,13 +22,15 @@ namespace tomsengine
 		GLuint id;   // Declaring GLint variable called id
 		std::vector<Sampler> samplers;   // Declaring a vector of sampler called samplers
 		glm::vec4 viewport;
+		std::shared_ptr<VertexArray> simpleShape;
 
 	public:
 
 		Shader(std::string vert, std::string frag);   // Shader constructor taking two variables
+		void draw();
+		void draw(std::shared_ptr<RenderTexture> renderTexture);
 		void draw(std::shared_ptr<VertexArray> vertexArray);   // Declaring draw function taking a variable
 		void draw(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray);
-		void draw2(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray);
 		void setUniform(std::string uniform, glm::vec4 value);   // Declaring a set uniform function taking a vec4
 		void setUniform(std::string uniform, float value);   // Declaring a set uniform function taking a float
 		void setUniform(std::string uniform, int value);
