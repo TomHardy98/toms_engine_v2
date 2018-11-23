@@ -32,6 +32,15 @@ namespace tomsengine
 		}
 	}
 
+	void Entity::postReveal()
+	{
+		for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
+			it != components.end(); it++)   // For each component
+		{
+			(*it)->onPostReveal();   // Call onReveal function at each component
+		}
+	}
+
 	void Entity::setDefaultTransformPositions()   // Declaring entity set transform function
 	{
 		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   // Add a transform component and set default position

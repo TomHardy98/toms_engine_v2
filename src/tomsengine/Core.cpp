@@ -4,6 +4,7 @@
 #include "BoxCollider.h"
 #include "Camera.h"
 #include "RenderTexture.h"
+#include "RTComponent.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
@@ -240,24 +241,29 @@ namespace tomsengine
 				}
 			}
 
-			glEnable(GL_DEPTH_TEST);   // Enable depth test so it knows what to draw first and last
-
 			glClearColor(0.0f, 0.0f, 0.0f, 1.0f);   // Set screen colour
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);   // Clear colour buffer and depth buffer
-			glEnable(GL_CULL_FACE);
-			glCullFace(GL_BACK);
 
 			for (std::vector<std::shared_ptr<Entity> >::iterator it = cameras.begin();
 				it != cameras.end(); it++)   // Loop through all the entities
 			{
 				setCurrCam((*it)->getComponent<Camera>());
-				(*it)->reveal();
 			}
 
 			for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities
 			{
 				(*it)->reveal();   // Call the reveal function for each entity
+			}
+
+			glDisable(GL_DEPTH_TEST);
+			glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+
+
+			for (std::vector<std::shared_ptr<Entity> >::iterator it = entities.begin();
+				it != entities.end(); it++)   // Loop through all the entities
+			{
+				(*it)->postReveal();
 			}
 
 			SDL_GL_SwapWindow(window);   // Swap the windows

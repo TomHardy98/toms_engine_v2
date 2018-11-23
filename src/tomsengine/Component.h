@@ -25,6 +25,7 @@ namespace tomsengine
 		virtual void onBegin();   // onBegin function declaration
 		virtual void onTick();   // onTick function declaration
 		virtual void onReveal();   // onReveal function declaration
+		virtual void onPostReveal();
 	};
 }
 

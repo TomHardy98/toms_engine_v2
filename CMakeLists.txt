@@ -59,6 +59,8 @@ add_library(tomsengine
   src/tomsengine/NonCopyable.h
   src/tomsengine/RenderTexture.cpp
   src/tomsengine/RenderTexture.h
+  src/tomsengine/RTComponent.cpp
+  src/tomsengine/RTComponent.h
 )
 
 add_executable(game

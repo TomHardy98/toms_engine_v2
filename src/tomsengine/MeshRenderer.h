@@ -1,14 +1,15 @@
 #include "Component.h"
-#include "Texture.h"
-#include "RenderTexture.h"
 #include "NonCopyable.h"
 
 #include <memory>   // Allows for the use of pointers
+#include <string>
 
 namespace tomsengine
 {
 	class VertexArray;   // Gives access to the VertexArray class
 	class Shader;   // Gives access to the Shader class
+	class RenderTexture;
+	class Texture;
 
 	class MeshRenderer : public Component, private NonCopyable   // MeshRenderer class inherits from Component
 	{

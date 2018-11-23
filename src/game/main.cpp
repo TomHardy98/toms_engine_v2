@@ -16,6 +16,10 @@ void safe_main()
 	std::shared_ptr<Core> ptr = core->getPtrToThis();   // Setting cores 'self'
 	core->self = ptr;   // Setting cores 'self'
 
+	// Creating main render texture object to draw scene
+	shared<Entity> renderTextureObject = core->addEntity();
+	renderTextureObject->addComponent<RTComponent>();
+
 	// Creating main camera
 	shared<Entity> mainCam = core->addEntity();
 	mainCam->addComponent<Camera>();

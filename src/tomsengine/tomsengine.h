@@ -12,5 +12,6 @@
 #include "Camera.h"
 #include "NonCopyable.h"
 #include "RenderTexture.h"
+#include "RTComponent.h"
 
 #endif

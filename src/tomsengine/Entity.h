@@ -89,6 +89,7 @@ namespace tomsengine
 
 		void tick();   // Defining tick function
 		void reveal();   // Defining reveal function
+		void postReveal();
 		void setDefaultTransformPositions();   // Defining set transform function
 	};
 }

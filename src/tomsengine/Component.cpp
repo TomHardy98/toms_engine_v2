@@ -29,6 +29,11 @@ namespace tomsengine
 
 	}
 
+	void Component::onPostReveal()
+	{
+
+	}
+
 	std::shared_ptr<Entity> Component::getEntity()   // getEntity function declaration
 	{
 		return entity.lock();   // Return a shared pointer of Entity
