@@ -138,7 +138,7 @@ namespace tomsengine
 
 	void Shader::draw(std::shared_ptr<VertexArray> vertexArray)   // Shader draw function
 	{
-		glViewport(viewport.x, viewport.y, viewport.z, viewport.w);
+		//glViewport(viewport.x, viewport.y, viewport.z, viewport.w);
 		glUseProgram(id);   // Use program using id
 		glBindVertexArray(vertexArray->getId());   // Bind the vertexArray shader
 

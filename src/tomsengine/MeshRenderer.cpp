@@ -32,15 +32,7 @@ namespace tomsengine
 		
 		shader->setUniform("in_Texture", tex);   // Set the texture
 
-		if (getEntity()->hasComponent<RTComponent>() == true)
-		{
-			tempRt = getEntity()->getComponent<RTComponent>()->rt;
-			shader->draw(tempRt, shape);
-		}
-		else
-		{
-			shader->draw(shape);
-		}
+		shader->draw(shape);
 	}
 
 	void MeshRenderer::chooseCube()

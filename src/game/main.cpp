@@ -17,8 +17,8 @@ void safe_main()
 	core->self = ptr;   // Setting cores 'self'
 
 	// Creating main render texture object to draw scene
-	shared<Entity> renderTextureObject = core->addEntity();
-	renderTextureObject->addComponent<RTComponent>();
+	//shared<Entity> renderTextureObject = core->addEntity();
+	//renderTextureObject->addComponent<RTComponent>();
 
 	// Creating main camera
 	shared<Entity> mainCam = core->addEntity();
