@@ -24,15 +24,18 @@ namespace tomsengine
 
 	void MeshRenderer::onReveal()   // MeshRenderer onReveal function
 	{
-		shader->setUniform("in_Model", getEntity()->getComponent<Transform>()->getModelMatrix());   // Set the model matrix
-		
-		shader->setUniform("in_Projection", getCore()->getCurrCam()->getProjMatrix());   // Set the projection matrix
-		
-		shader->setUniform("in_View", getCore()->getCurrCam()->getEntity()->getComponent<Transform>()->getViewMatrix());	  // Set the view matrix
-		
-		shader->setUniform("in_Texture", tex);   // Set the texture
+		if (isAlive)
+		{
+			shader->setUniform("in_Model", getEntity()->getComponent<Transform>()->getModelMatrix());   // Set the model matrix
 
-		shader->draw(shape);
+			shader->setUniform("in_Projection", getCore()->getCurrCam()->getProjMatrix());   // Set the projection matrix
+
+			shader->setUniform("in_View", getCore()->getCurrCam()->getEntity()->getComponent<Transform>()->getViewMatrix());	  // Set the view matrix
+
+			shader->setUniform("in_Texture", tex);   // Set the texture
+
+			shader->draw(shape);
+		}
 	}
 
 	void MeshRenderer::chooseCube()

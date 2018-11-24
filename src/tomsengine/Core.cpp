@@ -73,6 +73,8 @@ namespace tomsengine
 		bool moveForward = false;
 		bool moveBack = false;
 
+		bool isAlive = true;
+
 		float mouseRelX = 0.0f;
 		float mouseRelY = 0.0f;
 		float mouseSense = 0.004f;
@@ -137,60 +139,63 @@ namespace tomsengine
 					break;
 				}
 
-				for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
-					it != entities.end(); it++)   // Loop through all the entities
+				if (isAlive)
 				{
-					if ((*it)->hasComponent<Player>() == true)
+					for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
+						it != entities.end(); it++)   // Loop through all the entities
 					{
-						if (moveForward & !moveBack & !moveLeft & !moveRight)
+						if ((*it)->hasComponent<Player>() == true)
 						{
-							if ((*it)->getComponent<Transform>()->getPosition().y >= 16)
+							if (moveForward & !moveBack & !moveLeft & !moveRight)
 							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								if ((*it)->getComponent<Transform>()->getPosition().y >= 16)
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								}
+								else
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
+									cam->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
+								}
 							}
-							else
-							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
-								cam->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
-							}
-						}
 
-						if (moveBack & !moveForward & !moveLeft & !moveRight)
-						{
-							if ((*it)->getComponent<Transform>()->getPosition().y <= -6.0f)
+							if (moveBack & !moveForward & !moveLeft & !moveRight)
 							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								if ((*it)->getComponent<Transform>()->getPosition().y <= -6.0f)
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								}
+								else
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
+									cam->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
+								}
 							}
-							else
-							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
-								cam->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
-							}
-						}
 
-						if (moveLeft & !moveBack & !moveForward & !moveRight)
-						{
-							if ((*it)->getComponent<Transform>()->getPosition().x <= -11.5f)
+							if (moveLeft & !moveBack & !moveForward & !moveRight)
 							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								if ((*it)->getComponent<Transform>()->getPosition().x <= -11.5f)
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								}
+								else
+								{
+									(*it)->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
+									cam->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
+								}
 							}
-							else
-							{
-								(*it)->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
-								cam->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
-							}
-						}
 
-						if (moveRight & !moveBack & !moveLeft & !moveForward)
-						{
-							if ((*it)->getComponent<Transform>()->getPosition().x >= 11.5f)
+							if (moveRight & !moveBack & !moveLeft & !moveForward)
 							{
-								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
-							}
-							else
-							{
-								(*it)->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
-								cam->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
+								if ((*it)->getComponent<Transform>()->getPosition().x >= 11.5f)
+								{
+									(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+								}
+								else
+								{
+									(*it)->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
+									cam->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
+								}
 							}
 						}
 					}
@@ -261,9 +266,9 @@ namespace tomsengine
 						{
 							if ((*it)->hasComponent<Player>() == true || (*it2)->hasComponent<Player>() == true)
 							{
-								std::cout << "Player has been killed" << std::endl;
-
-								// Delete player or end game here
+								isAlive = false;
+								(*it)->getComponent<MeshRenderer>()->isAlive = false;
+								(*it2)->getComponent<MeshRenderer>()->isAlive = false;
 							}
 							else
 							{

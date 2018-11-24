@@ -19,16 +19,14 @@ void safe_main()
 
 int main()
 {
-	safe_main();   // Call safe_main function
-
-	/*try
+	try
 	{
 		safe_main();
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
-	}*/
+	}
 
 	return 0;
 }

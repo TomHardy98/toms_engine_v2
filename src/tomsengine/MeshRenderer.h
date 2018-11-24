@@ -15,6 +15,8 @@ namespace tomsengine
 	{
 	public:
 
+		bool isAlive = true;
+
 		void onInit();   // Defining onInit function
 
 		void chooseCube();

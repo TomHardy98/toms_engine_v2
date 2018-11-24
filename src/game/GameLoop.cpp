@@ -91,7 +91,7 @@ void GameLoop::Start()
 		cube2->getComponent<Transform>()->Translate(-3.0f, i, 0.0f);
 	}
 
-	shared<Audio> au = std::make_shared<Audio>("../data/audio/dixie_horn.ogg");   // Add an audio clip
+	shared<Audio> au = std::make_shared<Audio>("../data/audio/space_invaders.ogg");   // Add an audio clip
 
 	au->play();   // Play the audio clip
 
