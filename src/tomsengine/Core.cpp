@@ -211,7 +211,7 @@ namespace tomsengine
 				{
 					(*it)->getComponent<Transform>()->Translate((*it)->getComponent<Transform>()->velocity, 0.0f, 0.0f);
 
-					if (((*it)->getComponent<Transform>()->getPosition().x <= -2.5f && (*it)->getComponent<Transform>()->velocity < 0.0f) || ((*it)->getComponent<Transform>()->getPosition().x >= 2.5f
+					if (((*it)->getComponent<Transform>()->getPosition().x <= -7.5f && (*it)->getComponent<Transform>()->velocity < 0.0f) || ((*it)->getComponent<Transform>()->getPosition().x >= 7.5f
 						&& (*it)->getComponent<Transform>()->velocity > 0.0f))
 					{
 						(*it)->getComponent<Transform>()->velocity = -(*it)->getComponent<Transform>()->velocity;

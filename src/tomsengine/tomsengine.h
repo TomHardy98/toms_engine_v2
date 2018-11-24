@@ -13,5 +13,6 @@
 #include "NonCopyable.h"
 #include "RenderTexture.h"
 #include "RTComponent.h"
+#include "Enemy.h"
 
 #endif
