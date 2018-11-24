@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sampler',['Sampler',['../structtomsengine_1_1_sampler.html',1,'tomsengine']]],
-  ['shader',['Shader',['../classtomsengine_1_1_shader.html',1,'tomsengine']]]
+  ['meshrenderer',['MeshRenderer',['../classtomsengine_1_1_mesh_renderer.html',1,'tomsengine']]]
 ];

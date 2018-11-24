@@ -74,9 +74,9 @@ $(function() {
 <div class="title">Entity.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="_component_8h_source.html">Component.h</a>&quot;</code><br />
-<code>#include &lt;memory&gt;</code><br />
+<div class="textblock"><code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="_component_8h_source.html">Component.h</a>&quot;</code><br />
 </div>
 <p><a href="_entity_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -88,11 +88,13 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacetomsengine"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetomsengine.html">tomsengine</a></td></tr>
+<tr class="memdesc:namespacetomsengine"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows for the use of vectors. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a6869d9f71eebbab486a7839b37bfc3c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_entity_8h.html#a6869d9f71eebbab486a7839b37bfc3c6">ADDCOMPONENT</a></td></tr>
+<tr class="memdesc:a6869d9f71eebbab486a7839b37bfc3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the ADDCOMPONENT to create a macro for the chunk of code below.  <a href="#a6869d9f71eebbab486a7839b37bfc3c6">More...</a><br /></td></tr>
 <tr class="separator:a6869d9f71eebbab486a7839b37bfc3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -108,6 +110,8 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">std::shared_ptr&lt;T&gt; rtn = std::make_shared&lt;T&gt;(); \</div><div class="line">    rtn-&gt;entity = <span class="keyword">self</span>; \</div><div class="line">    rtn-&gt;began = <span class="keyword">false</span>; \</div><div class="line">    components.push_back(rtn);</div></div><!-- fragment -->
+<p>Defines the ADDCOMPONENT to create a macro for the chunk of code below. </p>
+
 </div>
 </div>
 </div><!-- contents -->

@@ -68,13 +68,27 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classtomsengine_1_1_texture-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">tomsengine::Texture Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Inherits from <a class="el" href="classtomsengine_1_1_non_copyable.html">NonCopyable</a>.  
+ <a href="classtomsengine_1_1_texture.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_texture_8h_source.html">Texture.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for tomsengine::Texture:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classtomsengine_1_1_texture.png" usemap="#tomsengine::Texture_map" alt=""/>
+  <map id="tomsengine::Texture_map" name="tomsengine::Texture_map">
+<area href="classtomsengine_1_1_non_copyable.html" alt="tomsengine::NonCopyable" shape="rect" coords="0,0,164,24"/>
+<area href="classtomsengine_1_1_render_texture.html" title="Inherits from texture class. " alt="tomsengine::RenderTexture" shape="rect" coords="0,112,164,136"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -84,8 +98,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a270a5d664501ca0e7843a737508dbba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9224651f86e573dd31436d919258dc03"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtomsengine_1_1_texture.html#a9224651f86e573dd31436d919258dc03">getId</a> ()</td></tr>
 <tr class="separator:a9224651f86e573dd31436d919258dc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a2548fc9744f5e43e0276d5627ca178de"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtomsengine_1_1_texture.html#a2548fc9744f5e43e0276d5627ca178de">RenderTexture</a></td></tr>
+<tr class="separator:a2548fc9744f5e43e0276d5627ca178de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Inherits from <a class="el" href="classtomsengine_1_1_non_copyable.html">NonCopyable</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0afe8db9c4f2d4ffc55430f1ed92e053"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0afe8db9c4f2d4ffc55430f1ed92e053">&#9670;&nbsp;</a></span>Texture()</h2>
 
@@ -101,6 +122,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Load texture data into *data</p>
+<p>Generate texture names</p>
+<p>Specify a 2D tex image</p>
+<p>Free the data</p>
+<p>Generate mipmaps for the texture</p>
+<p>Bind texture to 0 </p>
 
 </div>
 </div>
@@ -135,6 +162,29 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a id="a2548fc9744f5e43e0276d5627ca178de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2548fc9744f5e43e0276d5627ca178de">&#9670;&nbsp;</a></span>RenderTexture</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classtomsengine_1_1_render_texture.html">RenderTexture</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
