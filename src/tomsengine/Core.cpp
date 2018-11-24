@@ -26,18 +26,28 @@ namespace tomsengine
 			throw std::exception();   // Throw exception
 		}
 
+		std::cout << "SDL Successfully Initialised" << std::endl;
+
 		window = SDL_CreateWindow("toms_engine_v2", SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);   // Create an SDL window
+
+		std::cout << "Window Width Successfully set to " << WINDOW_WIDTH << std::endl;
+		std::cout << "Window Height Successfully set to " << WINDOW_HEIGHT << std::endl;
+
 
 		if (!SDL_GL_CreateContext(window))   // If the window didnt get created
 		{
 			throw std::exception();   // Throw exception
 		}
 
+		std::cout << "Window Successfully Initialised" << std::endl;
+
 		if (glewInit() != GLEW_OK)   // If glew didnt initialisation
 		{
 			throw std::exception();   // Throw exception
 		}
+
+		std::cout << "GLEW Successfully Initialised" << std::endl;
 
 		device = alcOpenDevice(NULL);   // Set the device for audio
 
@@ -45,6 +55,8 @@ namespace tomsengine
 		{
 			throw std::exception();   // Throw exception
 		}
+
+		std::cout << "Device Successfully Initialised" << std::endl;
 
 		context = alcCreateContext(device, NULL);   // Set context for audio
 
@@ -60,6 +72,8 @@ namespace tomsengine
 			alcCloseDevice(device);   // Close the device
 			throw std::exception();   // Throw exception
 		}
+
+		std::cout << "Audio Device Successfully Initialised" << std::endl;
 	}
 
 	void Core::Start(std::shared_ptr<Entity> cam)   // Core start function
@@ -74,6 +88,7 @@ namespace tomsengine
 		bool moveBack = false;
 
 		bool isAlive = true;
+		int score = 0;
 
 		float mouseRelX = 0.0f;
 		float mouseRelY = 0.0f;
@@ -83,6 +98,8 @@ namespace tomsengine
 		Uint64 last = 0;
 		double deltaTs = 0;
 
+		std::cout << "Starting Toms_Engine_V2" << std::endl;
+
 		while (running)   // While running is true
 		{
 			SDL_Event event = { 0 };   // Create an SDL event array and initialise all to 0
@@ -91,6 +108,12 @@ namespace tomsengine
 			last = now;
 			now = SDL_GetPerformanceCounter();
 			deltaTs = (double)((now - last) * 1000 / (double)SDL_GetPerformanceFrequency());
+
+			if (isAlive)
+			{
+				score += 1;
+				std::cout << "Score: " << score << std::endl;
+			}
 
 			while (SDL_PollEvent(&event))   // If an event happens
 			{
@@ -266,6 +289,7 @@ namespace tomsengine
 						{
 							if ((*it)->hasComponent<Player>() == true || (*it2)->hasComponent<Player>() == true)
 							{
+								std::cout << "You were Killed by an Asteroid" << std::endl;
 								isAlive = false;
 								(*it)->getComponent<MeshRenderer>()->isAlive = false;
 								(*it2)->getComponent<MeshRenderer>()->isAlive = false;

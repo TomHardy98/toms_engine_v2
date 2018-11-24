@@ -33,7 +33,6 @@ namespace tomsengine
 	private:
 
 		bool running;   // Boolean for if the core is running
-		bool isAlive;
 
 		std::vector<std::shared_ptr<Entity>> entities;   // Shared pointer to a vector of entities
 
