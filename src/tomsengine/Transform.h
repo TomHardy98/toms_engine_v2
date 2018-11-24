@@ -8,37 +8,39 @@
 
 namespace tomsengine
 {
-	class Transform : public Component
+	class Transform : public Component   /// Inherits from component class
 	{
 	public:
 
-		Transform();
-		~Transform();
+		Transform();   // Constructor
+		~Transform();   // Destructor
 
-		void Translate(float x, float y, float z);
+		void Translate(float x, float y, float z);   // Defining translate function
 
-		void Rotate(float x2, float y2, float z2);
+		void Rotate(float x2, float y2, float z2);   // Defining rotate function
 
-		void Scale(float x3, float y3, float z3);
+		void Scale(float x3, float y3, float z3);   // Defining scale function
 
-		glm::mat4 getModelMatrix();
+		glm::mat4 getModelMatrix();   // Defining get model matrix function
 
-		glm::mat4 getViewMatrix();
+		glm::mat4 getViewMatrix();   // Defining get view matrix function
 
-		glm::vec3 getPosition() { return position; }
+		glm::vec3 getPosition() { return position; }   // Defining and creating getPosition function
 		void setPosition(float x, float y, float z) { position.x = x; position.y = y; position.z = z; }   // Used for setting default position of Entity
 
-		glm::vec3 getRotation() { return rotation; }
+		glm::vec3 getRotation() { return rotation; }   // Defining and creating getRotation function
 		void setRotation(float x2, float y2, float z2) { rotation.x = x2; rotation.y = y2; rotation.z = z2; }   // Used for setting default rotation of Entity
 
-		glm::vec3 getScale() { return scale; }
+		glm::vec3 getScale() { return scale; }   // Defining and creating getScale function
 		void setScale(float x3, float y3, float z3) { scale.x = x3; scale.y = y3; scale.z = z3; }   // Used for setting default scale of Entity
 
-		void setVelocity(float _velocity) { velocity = _velocity; }
-
-		float velocity;
+		float getVelocity() { return velocity; }   // Defining and creating getVelocity function
+		void setVelocity(float _velocity) { velocity = _velocity; }   // Defining and creating setVelocity function
 
 	private:
+
+		/// Private variables that can be accessed through public functions
+		float velocity;
 
 		glm::vec3 position;
 		glm::vec3 rotation;

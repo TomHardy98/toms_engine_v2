@@ -2,22 +2,22 @@
 #include "Shader.h"
 #include "RenderTexture.h"
 
-#define WINDOW_WIDTH 600   // Defining window width
-#define WINDOW_HEIGHT 900   // Defining window height
+#define WINDOW_WIDTH 600   /// Defining window width
+#define WINDOW_HEIGHT 900   /// Defining window height
 
 namespace tomsengine
 {
 	void RTComponent::onInit()
 	{
-		lightkeyShader = std::make_shared<Shader>("../data/shaders/lightkeyShader.vert", "../data/shaders/lightkeyShader.frag");
+		lightkeyShader = std::make_shared<Shader>("../data/shaders/lightkeyShader.vert", "../data/shaders/lightkeyShader.frag");   // Initialising lightkeyShader
 
-		nullShader = std::make_shared<Shader>("../data/shaders/nullShader.vert", "../data/shaders/nullShader.frag");
+		nullShader = std::make_shared<Shader>("../data/shaders/nullShader.vert", "../data/shaders/nullShader.frag");   // Initialising nullShader
 
-		blurShader = std::make_shared<Shader>("../data/shaders/blurShader.vert", "../data/shaders/blurShader.frag");
+		blurShader = std::make_shared<Shader>("../data/shaders/blurShader.vert", "../data/shaders/blurShader.frag");   // Initialising blurShader
 
-		mergeShader = std::make_shared<Shader>("../data/shaders/mergeShader.vert", "../data/shaders/mergeShader.frag");
+		mergeShader = std::make_shared<Shader>("../data/shaders/mergeShader.vert", "../data/shaders/mergeShader.frag");   // Initialising mergeShader
 
-		rt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);
+		rt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);   //
 
 		lightkeyRt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);
 

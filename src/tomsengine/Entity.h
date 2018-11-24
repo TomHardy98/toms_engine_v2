@@ -3,7 +3,7 @@
 #include <memory>   // Allows for the use of shared and weak pointers
 #include <vector>   // Allows for the use of vectors
 
-// Defines the ADDCOMPONENT to create a macro for the chunk of code below
+/// Defines the ADDCOMPONENT to create a macro for the chunk of code below
 #define ADDCOMPONENT \
 	std::shared_ptr<T> rtn = std::make_shared<T>(); \
 	rtn->entity = self; \
@@ -14,13 +14,13 @@ namespace tomsengine
 {
 	class Core;   // Gives access to the core class
 
-	class Entity
+	class Entity 
 	{
 		friend class Core;   // Gives core access to the private and public members  
 
 	public:
 
-		template <typename T>   // Creating a template for getting a component
+		template <typename T>   /// Creating a template for getting a component
 		std::shared_ptr<T> getComponent()
 		{
 			for (size_t i = 0; i < components.size(); i++)
@@ -36,7 +36,7 @@ namespace tomsengine
 			throw std::exception();
 		}
 
-		template <typename T>   // Creating a template for checking if a component exists
+		template <typename T>   /// Creating a template for checking if a component exists
 		bool hasComponent()
 		{
 			for (size_t i = 0; i < components.size(); i++)
@@ -52,7 +52,7 @@ namespace tomsengine
 			return false;
 		}
 
-		template <typename T>   // Creating a template for adding a component with no variables
+		template <typename T>   /// Creating a template for adding a component with no variables
 		std::shared_ptr<T> addComponent()
 		{
 			ADDCOMPONENT
@@ -61,7 +61,7 @@ namespace tomsengine
 			return rtn;
 		}
 
-		template <typename T, typename A>   // Creating a template for adding a component with one variable
+		template <typename T, typename A>   /// Creating a template for adding a component with one variable
 		std::shared_ptr<T> addComponent(A a)
 		{
 			ADDCOMPONENT
@@ -70,7 +70,7 @@ namespace tomsengine
 			return rtn;
 		}
 
-		template <typename T, typename A, typename B>   // Creating a template for adding a component with two variables
+		template <typename T, typename A, typename B>   /// Creating a template for adding a component with two variables
 		std::shared_ptr<T> addComponent(A a, B b)
 		{
 			ADDCOMPONENT
@@ -89,7 +89,7 @@ namespace tomsengine
 
 		void tick();   // Defining tick function
 		void reveal();   // Defining reveal function
-		void postReveal();
-		void setDefaultTransformPositions();   // Defining set transform function
+		void postReveal();   // Defining postReveal function
+		void setDefaultTransformPositions();   // Defining set default transform function
 	};
 }

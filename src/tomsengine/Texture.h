@@ -13,20 +13,22 @@ namespace tomsengine
 {
 	class RenderTexture;
 
-	class Texture : private NonCopyable
+	class Texture : private NonCopyable   /// Inherits from NonCopyable
 	{
-		friend class RenderTexture;
-
-		GLuint id;   // Declaring GLuint variable called id
-		glm::vec2 size;   // Declaring vec2 variable called size
-
-		Texture(int width, int height);
+		friend class RenderTexture;   // Can access rendertexture
 
 	public:
 
 		Texture(std::string path);   // Declaring constructor taking one variable
 		glm::vec2 getSize();   // Declaring vec2 getSize function
 		GLuint getId();   // Declaring getId function
+
+	private:
+
+		GLuint id;   // Declaring GLuint variable called id
+		glm::vec2 size;   // Declaring vec2 variable called size
+
+		Texture(int width, int height);   /// Initialising a texture function with width and height variables
 	};
 }
 

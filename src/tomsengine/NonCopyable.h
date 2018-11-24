@@ -13,9 +13,9 @@ namespace tomsengine
 
 	private:
 
-		NonCopyable(const NonCopyable&);
+		NonCopyable(const NonCopyable&);   /// Object isnt allow to copy it self
 
-		NonCopyable& operator=(const NonCopyable&);
+		NonCopyable& operator=(const NonCopyable&);   /// Object cant equal it self
 	};
 }
 

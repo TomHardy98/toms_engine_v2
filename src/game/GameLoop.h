@@ -5,6 +5,6 @@ class GameLoop
 {
 public:
 
-	void Start();
+	void Start();   /// Start function for GameLoop
 };
  

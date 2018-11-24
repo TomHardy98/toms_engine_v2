@@ -10,11 +10,10 @@ namespace tomsengine
 
 	}
 
+	/// Using AABB collision detection
 	bool BoxCollider::checkCollisions(std::shared_ptr<Entity> otherEntity)
 	{
-		glm::vec3 prevPos = getEntity()->getComponent<Transform>()->getPosition();
-		glm::vec3 prevPosOther = otherEntity->getComponent<Transform>()->getPosition();
-
+		/// Uses two entities positions and scale to work out if theyre colliding by comparing each values. If collision has occured return true
 		if (getEntity()->getComponent<Transform>()->getPosition().x <= (otherEntity->getComponent<Transform>()->getPosition().x + otherEntity->getComponent<Transform>()->getScale().x / 1)
 			&& getEntity()->getComponent<Transform>()->getPosition().x >= (otherEntity->getComponent<Transform>()->getPosition().x - otherEntity->getComponent<Transform>()->getScale().x / 1))
 		{
@@ -24,13 +23,15 @@ namespace tomsengine
 				if (getEntity()->getComponent<Transform>()->getPosition().z <= (otherEntity->getComponent<Transform>()->getPosition().z + otherEntity->getComponent<Transform>()->getScale().z / 1)
 					&& getEntity()->getComponent<Transform>()->getPosition().z >= (otherEntity->getComponent<Transform>()->getPosition().z - otherEntity->getComponent<Transform>()->getScale().z / 1))
 				{
-					getEntity()->getComponent<Transform>()->velocity = -getEntity()->getComponent<Transform>()->velocity;
+					/// Takes entities velocity and reverses it so they move away from each other
+					getEntity()->getComponent<Transform>()->setVelocity(-getEntity()->getComponent<Transform>()->getVelocity());
 
 					return true;
 				}
 			}
 		}
 
+		// If no collision has occured return false
 		return false;
 	}
 }

@@ -13,19 +13,21 @@ namespace tomsengine
 		friend class Entity;
 
 	public:
+
 		virtual ~Component();   // Virtual deconstructor
 		std::shared_ptr<Core> getCore();   // Shared pointer getCore() function declaration
 		std::shared_ptr<Entity> getEntity();   // Shared pointer getEntity() function declaration
 
 	private:
-		std::weak_ptr<Entity> entity;   // Weak pointer an entity
+
+		std::weak_ptr<Entity> entity;   // Weak pointer to an entity
 		bool began;   // Boolean for if core has began
 
-		virtual void onInit();   // onInit function declaration
-		virtual void onBegin();   // onBegin function declaration
-		virtual void onTick();   // onTick function declaration
-		virtual void onReveal();   // onReveal function declaration
-		virtual void onPostReveal();
+		virtual void onInit();   /// onInit function declaration to be overriden
+		virtual void onBegin();   /// onBegin function declaration to be overriden
+		virtual void onTick();   /// onTick function declaration to be overriden
+		virtual void onReveal();   /// onReveal function declaration to be overriden
+		virtual void onPostReveal();   /// onPostReveal function declaration to be overriden
 	};
 }
 

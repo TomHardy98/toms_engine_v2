@@ -5,16 +5,19 @@
 
 namespace tomsengine
 {
-	class RenderTexture : public Texture
+	class RenderTexture : public Texture   /// Inherits from texture class
 	{
-		GLuint fbo;
-
 	public:
 
-		RenderTexture(int width, int height);
+		RenderTexture(int width, int height);   // RenderTexture function
 
-		GLuint getFbId();
-		void clear();
+		GLuint getFbId();   /// Used to get fbo from private
+		void clear();   // Function declaration to clear render texture
+
+	private:
+
+		GLuint fbo;   /// Used to identify fbo
+
 	};
 }
 

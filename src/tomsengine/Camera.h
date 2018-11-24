@@ -4,12 +4,10 @@
 
 namespace tomsengine
 {
-	class Camera : public Component
+	class Camera : public Component   /// Inherits from component
 	{
 	public:
 
-		void onInit();
-
-		glm::mat4 getProjMatrix();
+		glm::mat4 getProjMatrix();   /// Get projection matrix function
 	};
 }

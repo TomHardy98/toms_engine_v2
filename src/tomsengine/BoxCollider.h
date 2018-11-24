@@ -5,16 +5,12 @@
 
 namespace tomsengine
 {
-	class BoxCollider : public Component
+	class BoxCollider : public Component   // Inherits from component
 	{
 	public:
 
-		~BoxCollider();
+		~BoxCollider();   /// Deconstructor for BoxCollider
 
-		bool checkCollisions(std::shared_ptr<Entity> otherEntity);
-
-	private:
-
-
+		bool checkCollisions(std::shared_ptr<Entity> otherEntity);   /// Check collisions function for BoxCollider component
 	};
 }

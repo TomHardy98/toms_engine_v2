@@ -29,18 +29,18 @@ namespace tomsengine
 
 	}
 
-	void Component::onPostReveal()
+	void Component::onPostReveal()   // Declaring onPostReveal function
 	{
 
 	}
 
 	std::shared_ptr<Entity> Component::getEntity()   // getEntity function declaration
 	{
-		return entity.lock();   // Return a shared pointer of Entity
+		return entity.lock();   /// Return a shared pointer of Entity
 	}
 
 	std::shared_ptr<Core> Component::getCore()   // getCore function declaration
 	{
-		return getEntity()->getCore();   // Return a shared pointer of Core
+		return getEntity()->getCore();   /// Return a shared pointer of Core
 	}
 }

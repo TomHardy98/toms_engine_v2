@@ -13,10 +13,10 @@ namespace tomsengine
 		for (std::vector<std::shared_ptr<Component> >::iterator it = components.begin();
 			it != components.end(); it++)   // For each component
 		{
-			if (!(*it)->began)   // If the iterator isnt at the beginning
+			if (!(*it)->began)   // If the iterator began is false
 			{
-				(*it)->onBegin();   // Call onBegin function at each component
-				(*it)->began = true;   // Set began to true at each component
+				(*it)->onBegin();   /// Call onBegin function at each component
+				(*it)->began = true;   /// Set began to true at each component
 			}
 
 			(*it)->onTick();   // Call onTick function at each component
@@ -43,8 +43,8 @@ namespace tomsengine
 
 	void Entity::setDefaultTransformPositions()   // Declaring entity set transform function
 	{
-		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   // Add a transform component and set default position
-		getComponent<Transform>()->setRotation(0.0f, 0.0f, 0.0f);   // Access the transform component and set default rotation
-		getComponent<Transform>()->setScale(1.0f, 1.0f, 1.0f);   // Access the transform component and set default scale
+		addComponent<Transform>()->setPosition(0.0f, 0.0f, -10.0f);   /// Add a transform component and set default position
+		getComponent<Transform>()->setRotation(0.0f, 0.0f, 0.0f);   /// Access the transform component and set default rotation
+		getComponent<Transform>()->setScale(1.0f, 1.0f, 1.0f);   /// Access the transform component and set default scale
 	}
 }
