@@ -1,14 +1,13 @@
+#include <glm/ext.hpp>   // Allows for the use of GLM
+#include <vector>   // Allows for the use of vectors
+#include <fstream>   // Allows for the use of accessing external files
+#include <iostream>   // Allows for the use of the command console
+
 #include "Shader.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 #include "Texture.h"
 #include "RenderTexture.h"
-
-#include <glm/ext.hpp>   // Allows for the use of GLM
-
-#include <vector>   // Allows for the use of vectors
-#include <fstream>   // Allows for the use of accessing external files
-#include <iostream>   // Allows for the use of the command console
 
 namespace tomsengine
 {
@@ -94,6 +93,7 @@ namespace tomsengine
 		glDetachShader(id, fragmentShaderId);   // Detach fragmentShader
 		glDeleteShader(fragmentShaderId);   // Delete fragmentShader
 
+		/// Creating a quad manually to draw the render texture to
 		VertexBuffer *positions = new VertexBuffer();
 		positions->add(glm::vec2(-1.0f, 1.0f));
 		positions->add(glm::vec2(-1.0f, -1.0f));
@@ -110,30 +110,30 @@ namespace tomsengine
 		texCoords->add(glm::vec2(1.0f, 0.0f));
 		texCoords->add(glm::vec2(0.0f, 0.0f));
 
-		simpleShape = std::make_shared<VertexArray>();
-		simpleShape->setBuffer("in_Position", positions);
-		simpleShape->setBuffer("in_TexCoord", texCoords);
+		simpleShape = std::make_shared<VertexArray>();   // Creating a vertex array called 'simple shape'
+		simpleShape->setBuffer("in_Position", positions);   // Setting positions of quad
+		simpleShape->setBuffer("in_TexCoord", texCoords);   // Setting texture coordinates for quad
 
 	}
 
 	void Shader::draw(std::shared_ptr<RenderTexture> renderTexture, std::shared_ptr<VertexArray> vertexArray)
 	{
-		glBindFramebuffer(GL_FRAMEBUFFER, renderTexture->getFbId());
-		glm::vec4 lastViewport = viewport;
-		viewport = glm::vec4(0, 0, renderTexture->getSize().x, renderTexture->getSize().y);
-		draw(vertexArray);
-		viewport = lastViewport;
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glBindFramebuffer(GL_FRAMEBUFFER, renderTexture->getFbId());   /// Bind frame buffer using render textures fbo id
+		glm::vec4 lastViewport = viewport;   // Setting viewport
+		viewport = glm::vec4(0, 0, renderTexture->getSize().x, renderTexture->getSize().y);   /// Setting viewport to the new render textures x and y values
+		draw(vertexArray);   // Calling draw function to draw on top of screen
+		viewport = lastViewport;   // Setting last viewport
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);   /// Unbinding frame buffer
 	}
 
 	void Shader::draw(std::shared_ptr<RenderTexture> renderTexture)
 	{
-		draw(renderTexture, simpleShape);
+		draw(renderTexture, simpleShape);   /// Draw function to draw onto 'simple shape' using rendertexture
 	}
 
 	void Shader::draw()
 	{
-		draw(simpleShape);
+		draw(simpleShape);   // Draw function to draw the simple shape
 	}
 
 	void Shader::draw(std::shared_ptr<VertexArray> vertexArray)   // Shader draw function
@@ -196,18 +196,18 @@ namespace tomsengine
 		glUseProgram(0);   // Stop using program
 	}
 
-	void Shader::setUniform(std::string uniform, int value)
+	void Shader::setUniform(std::string uniform, int value)   // Set uniform using int function
 	{
-		GLint uniformId = glGetUniformLocation(id, uniform.c_str());
+		GLint uniformId = glGetUniformLocation(id, uniform.c_str());   // Set uniformId
 
-		if (uniformId == -1)
+		if (uniformId == -1)   // If uniformId failed to set
 		{
-			throw std::exception();
+			throw std::exception();   // Throw exception
 		}
 
-		glUseProgram(id);
-		glUniform1i(uniformId, value);
-		glUseProgram(0);
+		glUseProgram(id);   // Use program using id
+		glUniform1i(uniformId, value);   // Set uniform
+		glUseProgram(0);   // Stop using program
 	}
 
 	void Shader::setUniform(std::string uniform, glm::mat4 value)   // Set uniform using mat4 function
@@ -246,10 +246,10 @@ namespace tomsengine
 			}
 		}
 
-		Sampler s;   // Create a sampler called s
-		s.id = uniformId;   // Set s id to uniformId
-		s.texture = texture;   // Set s texture to texture
-		samplers.push_back(s);   // Put s into samplers vector
+		Sampler s;   /// Create a sampler called s
+		s.id = uniformId;   /// Set s id to uniformId
+		s.texture = texture;   /// Set s texture to texture
+		samplers.push_back(s);   /// Put s into samplers vector
 
 		glUseProgram(id);   // Use program using id
 		glUniform1i(uniformId, samplers.size() - 1);   // Set uniform
@@ -261,8 +261,8 @@ namespace tomsengine
 		return id;   // Return id
 	}
 
-	void Shader::setViewport(glm::vec4 viewport)
+	void Shader::setViewport(glm::vec4 viewport)   // setViewport function
 	{
-		this->viewport = viewport;
+		this->viewport = viewport;   /// Setting viewport to shaders viewport
 	}
 }

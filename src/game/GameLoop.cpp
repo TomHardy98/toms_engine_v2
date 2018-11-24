@@ -1,6 +1,7 @@
-#include "GameLoop.h"
 #include <iostream>
 #include <ctime>   // Allows for the use of srand
+
+#include "GameLoop.h"
 
 #define shared std::shared_ptr   // Define what a shared pointer is, just use the word 'shared'
 #define weak std::weak_ptr   // Define what a weak pointer is, just use the word 'weak'

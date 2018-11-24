@@ -7,4 +7,3 @@ public:
 
 	void Start();   /// Start function for GameLoop
 };
- 

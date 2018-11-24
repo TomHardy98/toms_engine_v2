@@ -1,10 +1,9 @@
-#include "Audio.h"
-
 #include <AL/al.h>   // Allows for the use of audio functions
-#include <vorbis/vorbisfile.h>
-
 #include <iostream>   // Allows for the use of command console output
+#include <vorbis/vorbisfile.h>
 #include <vector>   // Allows for the use of vectors
+
+#include "Audio.h"
 
 namespace tomsengine
 {

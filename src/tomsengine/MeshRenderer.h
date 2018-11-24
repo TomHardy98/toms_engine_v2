@@ -1,8 +1,8 @@
-#include "Component.h"
-#include "NonCopyable.h"
-
 #include <memory>   // Allows for the use of pointers
 #include <string>
+
+#include "Component.h"
+#include "NonCopyable.h"
 
 namespace tomsengine
 {

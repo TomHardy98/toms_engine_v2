@@ -17,7 +17,9 @@ namespace tomsengine
 
 		mergeShader = std::make_shared<Shader>("../data/shaders/mergeShader.vert", "../data/shaders/mergeShader.frag");   // Initialising mergeShader
 
-		rt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);   //
+		// Creating render texture objects using window width and window height
+
+		rt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		lightkeyRt = std::make_shared<RenderTexture>(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -32,29 +34,29 @@ namespace tomsengine
 
 	void RTComponent::onPostReveal()
 	{
-		rt->clear();
+		rt->clear();   /// Clear the render texture
 
-		glEnable(GL_CULL_FACE);
-		glEnable(GL_DEPTH_TEST);   // Enable depth test so it knows what to draw first and last
+		glEnable(GL_CULL_FACE);   /// Enable cull faces
+		glEnable(GL_DEPTH_TEST);   /// Enable depth test so it knows what to draw first and last
 
-		lightkeyShader->setUniform("in_Texture", rt);
-		lightkeyShader->draw(lightkeyRt);
+		lightkeyShader->setUniform("in_Texture", rt);   // Set the lightkeyShader uniform
+		lightkeyShader->draw(lightkeyRt);   /// Draw the lightkeyShader to the rt on top of the screen
 
 		blurShader->setUniform("in_Texture", lightkeyRt);
-		blurShader->draw(blurRt);
+		blurShader->draw(blurRt);   /// Draw the blurShader to the rt on top of the screen
 
 		blurShader->setUniform("in_Texture", blurRt);
-		blurShader->draw(blur2Rt);
+		blurShader->draw(blur2Rt);   /// Draw the blurShader to the rt on top of the screen
 
 		blurShader->setUniform("in_Texture", blur2Rt);
-		blurShader->draw(blur3Rt);
+		blurShader->draw(blur3Rt);   /// Draw the blurShader to the rt on top of the screen
 
 		mergeShader->setUniform("in_TextureA", rt);
 		mergeShader->setUniform("in_TextureB", blur3Rt);
-		mergeShader->draw(mergeRt);
+		mergeShader->draw(mergeRt);   /// Draw the mergeShader to the rt on top of the screen
 
-		nullShader->setViewport(glm::vec4(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));
-		nullShader->setUniform("in_Texture", rt);
-		nullShader->draw();
+		nullShader->setViewport(glm::vec4(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT));   // Simple null shader setting the viewport to window width and height
+		nullShader->setUniform("in_Texture", rt);   // Setting uniform for null shader
+		nullShader->draw();   /// Drawing null shader to the 'simple shape'
 	}
 }

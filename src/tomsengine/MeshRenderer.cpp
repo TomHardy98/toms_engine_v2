@@ -1,3 +1,6 @@
+#include <iostream>   // Allows for the use of output to the command console
+#include <glm/ext.hpp>   // Allows for the use of GLM
+
 #include "MeshRenderer.h"
 #include "VertexArray.h"
 #include "Shader.h"
@@ -7,9 +10,6 @@
 #include "Core.h"
 #include "Texture.h"
 #include "RTComponent.h"
-
-#include <iostream>   // Allows for the use of output to the command console
-#include <glm/ext.hpp>   // Allows for the use of GLM
 
 namespace tomsengine
 {

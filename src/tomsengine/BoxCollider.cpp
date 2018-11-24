@@ -1,7 +1,8 @@
+#include <glm/ext.hpp>   // Allows for the use of GLM
+
 #include "BoxCollider.h"
 #include "Entity.h"
 #include "Transform.h"
-#include <glm/ext.hpp>   // Allows for the use of GLM
 
 namespace tomsengine
 {

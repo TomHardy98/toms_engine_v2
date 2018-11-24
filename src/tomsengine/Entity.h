@@ -1,7 +1,7 @@
-#include "Component.h"
-
 #include <memory>   // Allows for the use of shared and weak pointers
 #include <vector>   // Allows for the use of vectors
+
+#include "Component.h"
 
 /// Defines the ADDCOMPONENT to create a macro for the chunk of code below
 #define ADDCOMPONENT \

@@ -2,7 +2,6 @@
 #include <SDL2/SDL.h>   // Including SDL
 #include <AL/al.h>
 #include <AL/alc.h>
-
 #include <memory>   // Allows for the use of shared and weak pointers
 #include <vector>   // Allows for the use of vectors
 

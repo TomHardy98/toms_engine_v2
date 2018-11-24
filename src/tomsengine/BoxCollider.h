@@ -1,7 +1,7 @@
-#include "Component.h"
-
 #include <memory>
 #include <iostream>
+
+#include "Component.h"
 
 namespace tomsengine
 {

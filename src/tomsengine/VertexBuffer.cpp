@@ -24,8 +24,8 @@ namespace tomsengine
 			throw std::exception();   // Throw exception
 		}
 
-		data.push_back(value.x);   // Push back value x into data
-		data.push_back(value.y);   // Push back value y into data
+		data.push_back(value.x);   /// Push back value x into data
+		data.push_back(value.y);   /// Push back value y into data
 		dirty = true;   // Set dirty to true
 	}
 
@@ -41,9 +41,9 @@ namespace tomsengine
 			throw std::exception();   // Throw exception
 		}
 
-		data.push_back(value.x);   // Push back value x into data
-		data.push_back(value.y);   // Push back value y into data
-		data.push_back(value.z);   // Push back value z into data
+		data.push_back(value.x);   /// Push back value x into data
+		data.push_back(value.y);   /// Push back value y into data
+		data.push_back(value.z);   /// Push back value z into data
 		dirty = true;   // Set dirty to true
 	}
 
@@ -59,10 +59,10 @@ namespace tomsengine
 			throw std::exception();   // Throw exception
 		}
 
-		data.push_back(value.x);   // Push back value x into data
-		data.push_back(value.y);   // Push back value y into data
-		data.push_back(value.z);   // Push back value z into data
-		data.push_back(value.w);   // Push back value w into data
+		data.push_back(value.x);   /// Push back value x into data
+		data.push_back(value.y);   /// Push back value y into data
+		data.push_back(value.z);   /// Push back value z into data
+		data.push_back(value.w);   /// Push back value w into data
 		dirty = true;   // Set dirty to true
 	}
 
@@ -83,11 +83,11 @@ namespace tomsengine
 
 	GLuint VertexBuffer::getId()   // VertexBuffer getId function
 	{
-		if (dirty)   // If dirty = true
+		if (dirty)   // If dirty is true
 		{
-			glBindBuffer(GL_ARRAY_BUFFER, id);   // Bind array buffer to id
-			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * data.size(), &data.at(0), GL_STATIC_DRAW);   // Set buffer data to data
-			glBindBuffer(GL_ARRAY_BUFFER, 0);   // Bind array buffer to 0
+			glBindBuffer(GL_ARRAY_BUFFER, id);   /// Bind array buffer to id
+			glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * data.size(), &data.at(0), GL_STATIC_DRAW);   /// Set buffer data
+			glBindBuffer(GL_ARRAY_BUFFER, 0);   /// Bind array buffer to 0
 			dirty = false;   // Set dirty to false
 		}
 

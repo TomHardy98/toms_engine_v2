@@ -1,3 +1,6 @@
+#include <GL/glew.h>   // Allows for the use of GLEW
+#include <iostream>
+
 #include "Core.h"
 #include "Entity.h"
 #include "Transform.h"
@@ -8,9 +11,6 @@
 #include "MeshRenderer.h"
 #include "Enemy.h"
 #include "Player.h"
-
-#include <GL/glew.h>   // Allows for the use of GLEW
-#include <iostream>
 
 #define WINDOW_WIDTH 600  /// Defining window width
 #define WINDOW_HEIGHT 900   /// Defining window height

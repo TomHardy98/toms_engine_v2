@@ -1,10 +1,10 @@
-#include "Component.h"
-
 #include <GL/glew.h>   // Allows for the use of GLM
 #define GLM_FORCE_CTOR_INIT   // Forces vectors to be empty
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <memory>   // Allows for the use of pointers
+
+#include "Component.h"
 
 namespace tomsengine
 {

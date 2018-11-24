@@ -1,6 +1,6 @@
-#include "Component.h"
-
 #include <glm/ext.hpp>   // Allows for the use of GLM
+
+#include "Component.h"
 
 namespace tomsengine
 {

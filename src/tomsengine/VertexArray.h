@@ -1,7 +1,6 @@
 #include <GL/glew.h>   // Allows for the use of GLM
 #define GLM_FORCE_CTOR_INIT   /// Forces vectors to be empty
 #include <glm/glm.hpp>
-
 #include <vector>   /// Allows for the use of vectors
 #include <string>   /// Allows for the use of strings
 #include <memory>   /// Allows for the use of pointers
