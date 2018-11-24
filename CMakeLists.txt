@@ -63,6 +63,8 @@ add_library(tomsengine
   src/tomsengine/RTComponent.h
   src/tomsengine/Enemy.cpp
   src/tomsengine/Enemy.h
+  src/tomsengine/Player.cpp
+  src/tomsengine/Player.h
 )
 
 add_executable(game

@@ -9,9 +9,10 @@ using namespace tomsengine;
 
 void GameLoop::Start()
 {
-	float randNum = 0;
-	int randMax = 7;
-	int randMin = 2;
+	float randNum = 0.0f;
+	float randScale = 0.0f;
+	int randMax = 5;
+	int randScaleMax = 4;
 
 	srand(time(NULL));
 
@@ -23,7 +24,7 @@ void GameLoop::Start()
 	// Creating main camera
 	shared<Entity> mainCam = core->addEntity();
 	mainCam->addComponent<Camera>();
-	mainCam->getComponent<Transform>()->Translate(0.0f, 5.0f, 30.0f);
+	mainCam->getComponent<Transform>()->Translate(0.0f, -6.5f, 12.0f);
 
 	shared<Entity> background = core->addEntity();
 	shared<MeshRenderer> backgroundMr = background->addComponent<MeshRenderer>();
@@ -31,41 +32,62 @@ void GameLoop::Start()
 	backgroundMr->chooseTexture("../data/textures/space.jpg");
 	background->getComponent<Transform>()->Translate(0.0f, 5.0f, -10.0f);
 	background->getComponent<Transform>()->Rotate(110.0f, 0.0f, 0.0f);
-	background->getComponent<Transform>()->Scale(12.0f, 12.0f, 12.0f);
+	background->getComponent<Transform>()->Scale(20.0f, 20.0f, 0.0f);
 
+	// Creating player
+	shared<Entity> player = core->addEntity();
+
+	shared<MeshRenderer> playerMr = player->addComponent<MeshRenderer>();
+	playerMr->chooseCustomMesh("../data/meshes/ufo.obj");
+	playerMr->chooseTexture("../data/textures/ufo.png");
+
+	player->addComponent<Player>();
+	player->addComponent<BoxCollider>();
+	player->getComponent<Transform>()->Translate(0.0f, -6.5f, 0.0f);
+	player->getComponent<Transform>()->Rotate(0.0f, 55.0f, 0.0f);
+
+
+	// Creating enemies on right side
 	for (float i = -4.0f; i < 17.0f; i+= 2.0f)
 	{
 		randNum = (rand() % randMax + 1);
 		randNum = randNum / 100;
 
+		randScale = (rand() % randScaleMax + 3);
+		randScale = randScale / 10;
+
 		shared<Entity> cube = core->addEntity();
 
 		shared<MeshRenderer> cubeMr = cube->addComponent<MeshRenderer>();
-		cubeMr->chooseCube();
-		cubeMr->chooseTexture("../data/textures/spacebox.jpg");
+		cubeMr->chooseCustomMesh("../data/meshes/meteor.obj");
+		cubeMr->chooseTexture("../data/textures/asteroid.jpg");
 
 		cube->addComponent<Enemy>();
 		cube->addComponent<BoxCollider>();
 		cube->getComponent<Transform>()->setVelocity(randNum);
-		cube->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+		cube->getComponent<Transform>()->Scale(-randScale, -randScale, -randScale);
 		cube->getComponent<Transform>()->Translate(0.0f, i, 0.0f);
 	}
 
+	// Creating enemies on left side
 	for (float i = -3.5f; i < 17.0f; i += 2.0f)
 	{
 		randNum = (rand() % randMax + 1);
 		randNum = randNum / 100;
 
+		randScale = (rand() % randScaleMax + 1);
+		randScale = randScale / 10;
+
 		shared<Entity> cube2 = core->addEntity();
 
 		shared<MeshRenderer> cubeMr2 = cube2->addComponent<MeshRenderer>();
-		cubeMr2->chooseCube();
-		cubeMr2->chooseTexture("../data/textures/spacebox.jpg");
+		cubeMr2->chooseCustomMesh("../data/meshes/meteor.obj");
+		cubeMr2->chooseTexture("../data/textures/asteroid.jpg");
 
 		cube2->addComponent<Enemy>();
 		cube2->addComponent<BoxCollider>();
 		cube2->getComponent<Transform>()->setVelocity(randNum);
-		cube2->getComponent<Transform>()->Scale(-0.5f, -0.5f, -0.5f);
+		cube2->getComponent<Transform>()->Scale(-randScale, -randScale, -randScale);
 		cube2->getComponent<Transform>()->Translate(-3.0f, i, 0.0f);
 	}
 

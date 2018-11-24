@@ -14,5 +14,6 @@
 #include "RenderTexture.h"
 #include "RTComponent.h"
 #include "Enemy.h"
+#include "Player.h"
 
 #endif

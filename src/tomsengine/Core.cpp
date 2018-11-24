@@ -7,6 +7,7 @@
 #include "RTComponent.h"
 #include "MeshRenderer.h"
 #include "Enemy.h"
+#include "Player.h"
 
 #include <GL/glew.h>   // Allows for the use of GLEW
 #include <iostream>
@@ -64,12 +65,14 @@ namespace tomsengine
 	void Core::Start(std::shared_ptr<Entity> cam)   // Core start function
 	{
 		running = true;   // Set running to true
+
 		bool mouseFirst = true;
 		bool mouseMotion = false;
 		bool moveLeft = false;
 		bool moveRight = false;
 		bool moveForward = false;
 		bool moveBack = false;
+
 		float mouseRelX = 0.0f;
 		float mouseRelY = 0.0f;
 		float mouseSense = 0.004f;
@@ -134,49 +137,66 @@ namespace tomsengine
 					break;
 				}
 
-				if (moveForward & !moveBack & !moveLeft & !moveRight)
+				for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
+					it != entities.end(); it++)   // Loop through all the entities
 				{
-					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, -0.1f * deltaTs);
-				}
+					if ((*it)->hasComponent<Player>() == true)
+					{
+						if (moveForward & !moveBack & !moveLeft & !moveRight)
+						{
+							if ((*it)->getComponent<Transform>()->getPosition().y >= 16)
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+							}
+							else
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
+								cam->getComponent<Transform>()->Translate(0.0f, 0.01f * deltaTs, 0.0f);
+							}
+						}
 
-				if (moveForward && moveLeft & !moveBack & !moveRight)
-				{
-					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, -0.1f * deltaTs);
-				}
+						if (moveBack & !moveForward & !moveLeft & !moveRight)
+						{
+							if ((*it)->getComponent<Transform>()->getPosition().y <= -6.0f)
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+							}
+							else
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
+								cam->getComponent<Transform>()->Translate(0.0f, -0.01f * deltaTs, 0.0f);
+							}
+						}
 
-				if (moveForward && moveRight & !moveBack & !moveLeft)
-				{
-					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, -0.1f * deltaTs);
-				}
+						if (moveLeft & !moveBack & !moveForward & !moveRight)
+						{
+							if ((*it)->getComponent<Transform>()->getPosition().x <= -11.5f)
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+							}
+							else
+							{
+								(*it)->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
+								cam->getComponent<Transform>()->Translate(-0.01f * deltaTs, 0.0f, 0.0f);
+							}
+						}
 
-				if (moveBack && moveLeft & !moveForward & !moveRight)
-				{
-					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, 0.1f * deltaTs);
-				}
-
-				if (moveBack && moveRight & !moveForward & !moveLeft)
-				{
-					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, 0.1f * deltaTs);
-				}
-
-				if (moveBack & !moveForward & !moveLeft & !moveRight)
-				{
-					cam->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.1f * deltaTs);
-				}
-
-				if (moveLeft & !moveBack & !moveForward & !moveRight)
-				{
-					cam->getComponent<Transform>()->Translate(-0.1f * deltaTs, 0.0f, 0.0f);
-				}
-
-				if (moveRight & !moveBack & !moveLeft & !moveForward)
-				{
-					cam->getComponent<Transform>()->Translate(0.1f * deltaTs, 0.0f, 0.0f);
+						if (moveRight & !moveBack & !moveLeft & !moveForward)
+						{
+							if ((*it)->getComponent<Transform>()->getPosition().x >= 11.5f)
+							{
+								(*it)->getComponent<Transform>()->Translate(0.0f, 0.0f, 0.0f);
+							}
+							else
+							{
+								(*it)->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
+								cam->getComponent<Transform>()->Translate(0.01f * deltaTs, 0.0f, 0.0f);
+							}
+						}
+					}
 				}
 				
 				// COMMENTED OUT MOUSE MOVEMENT TO ROTATE CAMERA
-
-				
 				/*if (event.type == SDL_MOUSEMOTION) 
 				{
 					mouseMotion = true;
@@ -199,7 +219,6 @@ namespace tomsengine
 					mouseMotion = false;
 					cam->getComponent<Transform>()->Rotate((mouseRelX * mouseSense), (mouseRelY * mouseSense), 0.0f);
 				}*/
-				
 			}
 
 			std::vector < std::shared_ptr<Entity>> cameras;
@@ -207,11 +226,11 @@ namespace tomsengine
 			for (std::vector<std::shared_ptr<Entity>>::iterator it = entities.begin();
 				it != entities.end(); it++)   // Loop through all the entities
 			{
-				if ((*it)->hasComponent<BoxCollider>() == true)
+				if ((*it)->hasComponent<Enemy>() == true)
 				{
 					(*it)->getComponent<Transform>()->Translate((*it)->getComponent<Transform>()->velocity, 0.0f, 0.0f);
 
-					if (((*it)->getComponent<Transform>()->getPosition().x <= -7.5f && (*it)->getComponent<Transform>()->velocity < 0.0f) || ((*it)->getComponent<Transform>()->getPosition().x >= 7.5f
+					if (((*it)->getComponent<Transform>()->getPosition().x <= -11.5f && (*it)->getComponent<Transform>()->velocity < 0.0f) || ((*it)->getComponent<Transform>()->getPosition().x >= 11.5f
 						&& (*it)->getComponent<Transform>()->velocity > 0.0f))
 					{
 						(*it)->getComponent<Transform>()->velocity = -(*it)->getComponent<Transform>()->velocity;
@@ -238,7 +257,19 @@ namespace tomsengine
 					}
 					else
 					{
-						(*it)->getComponent<BoxCollider>()->checkCollisions(*it2);   // Check collisions function
+						if ((*it)->getComponent<BoxCollider>()->checkCollisions(*it2) == true)  // Check collisions function
+						{
+							if ((*it)->hasComponent<Player>() == true || (*it2)->hasComponent<Player>() == true)
+							{
+								std::cout << "Player has been killed" << std::endl;
+
+								// Delete player or end game here
+							}
+							else
+							{
+								continue;
+							}
+						}
 					}
 				}
 			}

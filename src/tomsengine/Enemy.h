@@ -8,5 +8,6 @@ namespace tomsengine
 	{
 	public:
 		
+		// Tag class used to differentiate between 'players' and 'enemies'
 	};
 }
